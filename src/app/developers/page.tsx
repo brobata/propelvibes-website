@@ -1,140 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
+export const dynamic = "force-dynamic";
+
+import React, { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import {
-  Search,
-  Filter,
-  Star,
-  CheckCircle2,
-  Rocket,
-  X,
-} from "lucide-react";
+import { Search, Users } from "lucide-react";
 import { PageLayout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getInitials } from "@/lib/utils";
-
-// Demo data
-const allDevelopers = [
-  {
-    id: "1",
-    user: { name: "Jordan Mitchell", avatar_url: null },
-    headline: "Full-Stack Developer | React & Node.js Expert",
-    bio: "10+ years building web apps. Specializing in helping vibe-coders ship production-ready products.",
-    skills: ["React", "Node.js", "TypeScript", "PostgreSQL", "AWS"],
-    hourly_rate: 85,
-    availability: "available",
-    launches_completed: 23,
-    rating: 4.9,
-    reviews_count: 47,
-    verified: true,
-  },
-  {
-    id: "2",
-    user: { name: "Aisha Patel", avatar_url: null },
-    headline: "Mobile App Specialist | Flutter & React Native",
-    bio: "Former Google engineer. Expert at taking mobile MVPs from prototype to app store.",
-    skills: ["Flutter", "React Native", "Firebase", "iOS", "Android"],
-    hourly_rate: 95,
-    availability: "available",
-    launches_completed: 18,
-    rating: 5.0,
-    reviews_count: 31,
-    verified: true,
-  },
-  {
-    id: "3",
-    user: { name: "Carlos Rodriguez", avatar_url: null },
-    headline: "DevOps & Deployment Expert | AWS & Vercel",
-    bio: "I help vibe-coded apps scale. Infrastructure, CI/CD, and monitoring are my specialties.",
-    skills: ["AWS", "Docker", "CI/CD", "Kubernetes", "Terraform"],
-    hourly_rate: 110,
-    availability: "busy",
-    launches_completed: 34,
-    rating: 4.8,
-    reviews_count: 62,
-    verified: true,
-  },
-  {
-    id: "4",
-    user: { name: "Emma Nakamura", avatar_url: null },
-    headline: "AI/ML Integration Specialist | Python & OpenAI",
-    bio: "Making AI-powered features production-ready. From Claude to custom ML models.",
-    skills: ["Python", "OpenAI", "LangChain", "FastAPI", "Vector DBs"],
-    hourly_rate: 120,
-    availability: "available",
-    launches_completed: 15,
-    rating: 4.9,
-    reviews_count: 28,
-    verified: true,
-  },
-  {
-    id: "5",
-    user: { name: "Michael Chen", avatar_url: null },
-    headline: "Backend Architect | Scalable APIs & Databases",
-    bio: "15 years of backend experience. I fix the spaghetti and make it scale.",
-    skills: ["Go", "PostgreSQL", "Redis", "gRPC", "Microservices"],
-    hourly_rate: 130,
-    availability: "available",
-    launches_completed: 41,
-    rating: 4.7,
-    reviews_count: 89,
-    verified: true,
-  },
-  {
-    id: "6",
-    user: { name: "Sophie Williams", avatar_url: null },
-    headline: "Frontend Developer | Design-to-Code Expert",
-    bio: "I turn designs into pixel-perfect, accessible interfaces. Tailwind CSS enthusiast.",
-    skills: ["React", "Next.js", "Tailwind CSS", "Figma", "Accessibility"],
-    hourly_rate: 75,
-    availability: "available",
-    launches_completed: 29,
-    rating: 4.9,
-    reviews_count: 54,
-    verified: true,
-  },
-  {
-    id: "7",
-    user: { name: "Raj Krishnan", avatar_url: null },
-    headline: "Full-Stack Developer | Startup Specialist",
-    bio: "Ex-YC founder. I know what it takes to ship fast and iterate. Open to equity deals.",
-    skills: ["Next.js", "Supabase", "Stripe", "Vercel", "Product Strategy"],
-    hourly_rate: 150,
-    availability: "busy",
-    launches_completed: 12,
-    rating: 5.0,
-    reviews_count: 19,
-    verified: true,
-  },
-  {
-    id: "8",
-    user: { name: "Lisa Wang", avatar_url: null },
-    headline: "QA & Testing Expert | Making Apps Reliable",
-    bio: "Automated testing, manual QA, and bug hunting. I make sure your app works before launch.",
-    skills: ["Playwright", "Jest", "Cypress", "Testing Strategy", "Bug Triage"],
-    hourly_rate: 65,
-    availability: "available",
-    launches_completed: 38,
-    rating: 4.8,
-    reviews_count: 71,
-    verified: true,
-  },
-];
+import { DeveloperCard, FilterSidebar, SortDropdown } from "@/components/marketplace";
+import { useDevelopers } from "@/hooks/useDevelopers";
 
 const skillOptions = [
-  "React",
-  "Next.js",
-  "Node.js",
-  "Python",
-  "Flutter",
-  "AWS",
-  "TypeScript",
-  "PostgreSQL",
+  { value: "React", label: "React" },
+  { value: "Next.js", label: "Next.js" },
+  { value: "Node.js", label: "Node.js" },
+  { value: "TypeScript", label: "TypeScript" },
+  { value: "Python", label: "Python" },
+  { value: "Go", label: "Go" },
+  { value: "AWS", label: "AWS" },
+  { value: "PostgreSQL", label: "PostgreSQL" },
+  { value: "Supabase", label: "Supabase" },
+  { value: "React Native", label: "React Native" },
+  { value: "Flutter", label: "Flutter" },
+  { value: "OpenAI API", label: "AI/ML" },
 ];
 
 const availabilityOptions = [
@@ -142,312 +31,216 @@ const availabilityOptions = [
   { value: "busy", label: "Limited Availability" },
 ];
 
+const rateOptions = [
+  { value: "under_100", label: "Under $100/hr" },
+  { value: "100_150", label: "$100 - $150/hr" },
+  { value: "over_150", label: "Over $150/hr" },
+];
+
+const sortOptions = [
+  { value: "rating", label: "Highest Rated" },
+  { value: "launches", label: "Most Launches" },
+  { value: "rate_low", label: "Lowest Rate" },
+  { value: "rate_high", label: "Highest Rate" },
+  { value: "newest", label: "Newest" },
+];
+
 export default function DevelopersPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-  const [selectedAvailability, setSelectedAvailability] = useState<string[]>([]);
-  const [verifiedOnly, setVerifiedOnly] = useState(false);
-  const [showFilters, setShowFilters] = useState(false);
-
-  // Filter developers
-  const filteredDevelopers = allDevelopers.filter((dev) => {
-    const matchesSearch =
-      searchQuery === "" ||
-      dev.user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      dev.headline.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      dev.skills.some((skill) =>
-        skill.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-
-    const matchesSkills =
-      selectedSkills.length === 0 ||
-      dev.skills.some((s) => selectedSkills.includes(s));
-
-    const matchesAvailability =
-      selectedAvailability.length === 0 ||
-      selectedAvailability.includes(dev.availability);
-
-    const matchesVerified = !verifiedOnly || dev.verified;
-
-    return matchesSearch && matchesSkills && matchesAvailability && matchesVerified;
+  const [sortBy, setSortBy] = useState("rating");
+  const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({
+    skills: [],
+    availability: [],
+    rate: [],
   });
 
-  const toggleSkill = (skill: string) => {
-    setSelectedSkills((prev) =>
-      prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill]
-    );
+  // Build filters for the hook
+  const filters = useMemo(
+    () => ({
+      search: searchQuery || undefined,
+      skills: selectedFilters.skills.length > 0 ? selectedFilters.skills : undefined,
+      availability: selectedFilters.availability.length > 0
+        ? (selectedFilters.availability[0] as "available" | "busy")
+        : undefined,
+      verified_only: false,
+    }),
+    [searchQuery, selectedFilters]
+  );
+
+  // Fetch developers from database
+  const { developers, isLoading, totalCount } = useDevelopers(filters);
+
+  // Sort and filter developers client-side
+  const sortedDevelopers = useMemo(() => {
+    let filtered = [...developers];
+
+    // Apply rate filter client-side
+    if (selectedFilters.rate.length > 0) {
+      filtered = filtered.filter((dev) => {
+        const rate = dev.hourly_rate ? dev.hourly_rate / 100 : 0;
+        return selectedFilters.rate.some((r) => {
+          switch (r) {
+            case "under_100":
+              return rate < 100;
+            case "100_150":
+              return rate >= 100 && rate <= 150;
+            case "over_150":
+              return rate > 150;
+            default:
+              return true;
+          }
+        });
+      });
+    }
+
+    // Sort
+    switch (sortBy) {
+      case "launches":
+        return filtered.sort((a, b) => (b.launches_completed || 0) - (a.launches_completed || 0));
+      case "rate_low":
+        return filtered.sort((a, b) => (a.hourly_rate || Infinity) - (b.hourly_rate || Infinity));
+      case "rate_high":
+        return filtered.sort((a, b) => (b.hourly_rate || 0) - (a.hourly_rate || 0));
+      case "newest":
+        return filtered.sort(
+          (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        );
+      case "rating":
+      default:
+        return filtered.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+    }
+  }, [developers, sortBy, selectedFilters.rate]);
+
+  const handleFilterChange = (sectionId: string, values: string[]) => {
+    setSelectedFilters((prev) => ({
+      ...prev,
+      [sectionId]: values,
+    }));
   };
 
-  const toggleAvailability = (avail: string) => {
-    setSelectedAvailability((prev) =>
-      prev.includes(avail) ? prev.filter((a) => a !== avail) : [...prev, avail]
-    );
-  };
-
-  const clearFilters = () => {
+  const clearAllFilters = () => {
     setSearchQuery("");
-    setSelectedSkills([]);
-    setSelectedAvailability([]);
-    setVerifiedOnly(false);
+    setSelectedFilters({ skills: [], availability: [], rate: [] });
   };
 
-  const hasActiveFilters =
-    searchQuery !== "" ||
-    selectedSkills.length > 0 ||
-    selectedAvailability.length > 0 ||
-    verifiedOnly;
+  const filterSections = [
+    { id: "skills", title: "Skills", options: skillOptions, type: "multi" as const },
+    { id: "availability", title: "Availability", options: availabilityOptions, type: "single" as const },
+    { id: "rate", title: "Hourly Rate", options: rateOptions, type: "multi" as const },
+  ];
 
   return (
     <PageLayout>
-      {/* Header */}
-      <section className="pt-28 pb-12 bg-surface border-b border-border">
+      {/* Hero Header */}
+      <section className="pt-28 pb-8 bg-gradient-to-b from-primary-50 to-background">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="max-w-3xl"
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-3">
               Find Developers
             </h1>
-            <p className="text-lg text-text-secondary max-w-2xl">
-              Browse verified developers who specialize in taking vibe-coded apps to
-              production. Filter by skills, rate, and availability.
+            <p className="text-lg text-text-secondary mb-6">
+              Browse verified developers ready to help launch your vibe-coded app.
             </p>
+
+            {/* Search Bar */}
+            <div className="relative max-w-2xl">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
+              <Input
+                type="search"
+                placeholder="Search by name, skills, or headline..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-12 h-12 text-base bg-background-pure border-border shadow-sm"
+              />
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Search & Filters */}
-      <section className="sticky top-16 md:top-20 z-30 bg-background border-b border-border py-4">
+      {/* Main Content */}
+      <section className="py-8">
         <div className="container-custom">
-          <div className="flex flex-col md:flex-row gap-4">
-            {/* Search */}
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
-              <Input
-                type="search"
-                placeholder="Search by name, headline, or skills..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-              />
-            </div>
+          <div className="flex gap-8">
+            {/* Sidebar Filters */}
+            <FilterSidebar
+              sections={filterSections}
+              selectedFilters={selectedFilters}
+              onFilterChange={handleFilterChange}
+              onClearAll={clearAllFilters}
+              totalResults={totalCount}
+              resultsLabel="developers"
+            />
 
-            {/* Filter Toggle */}
-            <Button
-              variant={showFilters ? "secondary" : "outline"}
-              onClick={() => setShowFilters(!showFilters)}
-              className="gap-2"
-            >
-              <Filter className="w-4 h-4" />
-              Filters
-              {hasActiveFilters && (
-                <span className="w-5 h-5 rounded-full bg-primary text-white text-xs flex items-center justify-center">
-                  {selectedSkills.length +
-                    selectedAvailability.length +
-                    (verifiedOnly ? 1 : 0)}
-                </span>
-              )}
-            </Button>
-          </div>
-
-          {/* Expanded Filters */}
-          {showFilters && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="mt-4 pt-4 border-t border-border"
-            >
-              <div className="flex flex-wrap gap-6">
-                {/* Skills */}
-                <div>
-                  <p className="text-sm font-medium text-text-primary mb-2">Skills</p>
-                  <div className="flex flex-wrap gap-2">
-                    {skillOptions.map((skill) => (
-                      <button
-                        key={skill}
-                        onClick={() => toggleSkill(skill)}
-                        className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
-                          selectedSkills.includes(skill)
-                            ? "bg-primary text-white border-primary"
-                            : "bg-background text-text-secondary border-border hover:border-primary"
-                        }`}
-                      >
-                        {skill}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Availability */}
-                <div>
-                  <p className="text-sm font-medium text-text-primary mb-2">
-                    Availability
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {availabilityOptions.map((avail) => (
-                      <button
-                        key={avail.value}
-                        onClick={() => toggleAvailability(avail.value)}
-                        className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
-                          selectedAvailability.includes(avail.value)
-                            ? "bg-primary text-white border-primary"
-                            : "bg-background text-text-secondary border-border hover:border-primary"
-                        }`}
-                      >
-                        {avail.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Verified Only */}
-                <div>
-                  <p className="text-sm font-medium text-text-primary mb-2">
-                    Verification
-                  </p>
-                  <button
-                    onClick={() => setVerifiedOnly(!verifiedOnly)}
-                    className={`px-3 py-1.5 text-sm rounded-full border transition-colors flex items-center gap-1.5 ${
-                      verifiedOnly
-                        ? "bg-primary text-white border-primary"
-                        : "bg-background text-text-secondary border-border hover:border-primary"
-                    }`}
-                  >
-                    <CheckCircle2 className="w-4 h-4" />
-                    Verified Only
-                  </button>
-                </div>
-
-                {/* Clear */}
-                {hasActiveFilters && (
-                  <div className="flex items-end">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={clearFilters}
-                      className="text-text-muted"
-                    >
-                      <X className="w-4 h-4" />
-                      Clear all
-                    </Button>
-                  </div>
-                )}
+            {/* Results */}
+            <div className="flex-1 min-w-0">
+              {/* Sort Bar */}
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-sm text-text-muted">
+                  Showing <span className="font-semibold text-text-primary">{sortedDevelopers.length}</span> developers
+                </p>
+                <SortDropdown
+                  options={sortOptions}
+                  value={sortBy}
+                  onChange={setSortBy}
+                />
               </div>
-            </motion.div>
-          )}
-        </div>
-      </section>
 
-      {/* Results */}
-      <section className="section-padding">
-        <div className="container-custom">
-          {/* Results Count */}
-          <p className="text-sm text-text-muted mb-6">
-            Showing {filteredDevelopers.length} of {allDevelopers.length} developers
-          </p>
-
-          {/* Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredDevelopers.map((dev, index) => (
-              <motion.div
-                key={dev.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-              >
-                <Link href={`/developers/${dev.id}`} className="block group">
-                  <div className="bg-background border border-border rounded-xl p-6 hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center h-full flex flex-col">
-                    {/* Avatar */}
-                    <div className="relative inline-block mb-4 mx-auto">
-                      <Avatar className="w-20 h-20 ring-4 ring-background shadow-lg">
-                        <AvatarImage src={dev.user.avatar_url || undefined} />
-                        <AvatarFallback className="text-xl">
-                          {getInitials(dev.user.name)}
-                        </AvatarFallback>
-                      </Avatar>
-                      {dev.verified && (
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center ring-2 ring-background">
-                          <CheckCircle2 className="w-4 h-4 text-white" />
+              {/* Loading State */}
+              {isLoading && (
+                <div className="space-y-4">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="marketplace-card animate-pulse">
+                      <div className="marketplace-card-image flex items-center justify-center">
+                        <div className="w-24 h-24 rounded-full bg-surface" />
+                      </div>
+                      <div className="marketplace-card-content space-y-3">
+                        <div className="h-6 w-1/2 bg-surface rounded" />
+                        <div className="h-4 w-3/4 bg-surface rounded" />
+                        <div className="h-4 w-1/4 bg-surface rounded" />
+                        <div className="flex gap-2">
+                          <div className="h-6 w-16 bg-surface rounded-full" />
+                          <div className="h-6 w-16 bg-surface rounded-full" />
+                          <div className="h-6 w-16 bg-surface rounded-full" />
                         </div>
-                      )}
+                      </div>
                     </div>
+                  ))}
+                </div>
+              )}
 
-                    {/* Availability Badge */}
-                    <Badge
-                      variant={dev.availability === "available" ? "success" : "warning"}
-                      className="mx-auto mb-3"
-                    >
-                      {dev.availability === "available" ? "Available" : "Busy"}
-                    </Badge>
+              {/* Results List */}
+              {!isLoading && sortedDevelopers.length > 0 && (
+                <div className="space-y-4">
+                  {sortedDevelopers.map((developer, index) => (
+                    <DeveloperCard key={developer.id} developer={developer} index={index} />
+                  ))}
+                </div>
+              )}
 
-                    {/* Name & Headline */}
-                    <h3 className="font-semibold text-text-primary group-hover:text-primary transition-colors mb-1">
-                      {dev.user.name}
-                    </h3>
-                    <p className="text-sm text-text-secondary line-clamp-2 mb-4 flex-1">
-                      {dev.headline}
-                    </p>
-
-                    {/* Skills */}
-                    <div className="flex flex-wrap justify-center gap-1.5 mb-4">
-                      {dev.skills.slice(0, 3).map((skill) => (
-                        <Badge key={skill} variant="outline" className="text-xs">
-                          {skill}
-                        </Badge>
-                      ))}
-                      {dev.skills.length > 3 && (
-                        <Badge variant="outline" className="text-xs">
-                          +{dev.skills.length - 3}
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Stats */}
-                    <div className="flex items-center justify-center gap-4 text-sm mb-4">
-                      <span className="flex items-center gap-1 text-amber-500">
-                        <Star className="w-4 h-4 fill-current" />
-                        <span className="font-medium">{dev.rating}</span>
-                        <span className="text-text-muted">({dev.reviews_count})</span>
-                      </span>
-                      <span className="flex items-center gap-1 text-text-secondary">
-                        <Rocket className="w-4 h-4 text-primary" />
-                        <span>{dev.launches_completed}</span>
-                      </span>
-                    </div>
-
-                    {/* Rate */}
-                    <div className="pt-4 border-t border-border mt-auto">
-                      <span className="text-lg font-semibold text-text-primary">
-                        ${dev.hourly_rate}
-                      </span>
-                      <span className="text-sm text-text-muted">/hour</span>
-                    </div>
+              {/* Empty State */}
+              {!isLoading && sortedDevelopers.length === 0 && (
+                <div className="text-center py-16 bg-background-pure rounded-xl border border-border">
+                  <div className="w-16 h-16 rounded-full bg-primary-50 flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-primary" />
                   </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Empty State */}
-          {filteredDevelopers.length === 0 && (
-            <div className="text-center py-16">
-              <div className="w-16 h-16 rounded-full bg-surface flex items-center justify-center mx-auto mb-4">
-                <Search className="w-8 h-8 text-text-muted" />
-              </div>
-              <h3 className="text-xl font-semibold text-text-primary mb-2">
-                No developers found
-              </h3>
-              <p className="text-text-secondary mb-6">
-                Try adjusting your search or filters
-              </p>
-              <Button variant="outline" onClick={clearFilters}>
-                Clear all filters
-              </Button>
+                  <h3 className="text-xl font-semibold text-text-primary mb-2">
+                    No developers found
+                  </h3>
+                  <p className="text-text-secondary mb-6 max-w-sm mx-auto">
+                    Try adjusting your search or filters to find developers.
+                  </p>
+                  <Button onClick={clearAllFilters}>
+                    Clear all filters
+                  </Button>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </section>
     </PageLayout>
