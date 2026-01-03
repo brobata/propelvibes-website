@@ -51,7 +51,7 @@ export function LaunchCard({ launch, index = 0 }: LaunchCardProps) {
         <article className="marketplace-card group">
           {/* Image Section */}
           <div className="marketplace-card-image">
-            {launch.screenshot_urls?.[0] ? (
+            {launch.screenshot_urls?.[0] && !launch.screenshot_urls[0].includes('placehold') ? (
               <Image
                 src={launch.screenshot_urls[0]}
                 alt={launch.title}
@@ -59,8 +59,11 @@ export function LaunchCard({ launch, index = 0 }: LaunchCardProps) {
                 className="object-cover"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <Code2 className="w-12 h-12 text-text-muted" />
+              <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-50 flex flex-col items-center justify-center p-4">
+                <Code2 className="w-10 h-10 text-primary mb-2" />
+                <span className="text-xs font-medium text-primary-dark text-center line-clamp-2">
+                  {launch.title}
+                </span>
               </div>
             )}
             {badge && (
