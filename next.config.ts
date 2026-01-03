@@ -9,7 +9,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.dicebear.com",
+        hostname: "randomuser.me",
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
       },
     ],
   },

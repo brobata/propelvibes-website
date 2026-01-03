@@ -13,12 +13,13 @@ async function seed() {
   // ============================================
   console.log('Creating vibe coder profiles...');
 
+  // Using randomuser.me for realistic profile photos
   const vibeCoders = [
-    { id: '11111111-1111-1111-1111-111111111111', email: 'sarah@example.com', name: 'Sarah Chen', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah', role: 'vibe_coder', bio: 'Product designer turned vibe coder. Built my first app with Claude in a weekend!', location: 'San Francisco, CA', website_url: 'https://sarahchen.design', github_url: 'https://github.com/sarahchen', twitter_url: 'https://twitter.com/sarahcodes' },
-    { id: '22222222-2222-2222-2222-222222222222', email: 'marcus@example.com', name: 'Marcus Johnson', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus', role: 'vibe_coder', bio: 'Serial entrepreneur. Using AI to prototype ideas faster than ever.', location: 'Austin, TX', website_url: 'https://marcusj.com', github_url: 'https://github.com/marcusj' },
-    { id: '33333333-3333-3333-3333-333333333333', email: 'elena@example.com', name: 'Elena Rodriguez', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Elena', role: 'vibe_coder', bio: 'Former teacher building EdTech tools with AI assistance.', location: 'Miami, FL', github_url: 'https://github.com/elenarodriguez', twitter_url: 'https://twitter.com/elena_builds' },
-    { id: '44444444-4444-4444-4444-444444444444', email: 'james@example.com', name: 'James Wright', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=James', role: 'vibe_coder', bio: 'Finance professional exploring fintech ideas on weekends.', location: 'New York, NY', website_url: 'https://jameswright.io', github_url: 'https://github.com/jwright' },
-    { id: '55555555-5555-5555-5555-555555555555', email: 'priya@example.com', name: 'Priya Patel', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Priya', role: 'vibe_coder', bio: 'Healthcare consultant building patient engagement tools.', location: 'Boston, MA', github_url: 'https://github.com/priyapatel', twitter_url: 'https://twitter.com/priya_health' },
+    { id: '11111111-1111-1111-1111-111111111111', email: 'sarah@example.com', name: 'Sarah Chen', avatar_url: 'https://randomuser.me/api/portraits/women/44.jpg', role: 'vibe_coder', bio: 'Product designer turned vibe coder. Built my first app with Claude in a weekend!', location: 'San Francisco, CA', website_url: 'https://sarahchen.design', github_url: 'https://github.com/sarahchen', twitter_url: 'https://twitter.com/sarahcodes' },
+    { id: '22222222-2222-2222-2222-222222222222', email: 'marcus@example.com', name: 'Marcus Johnson', avatar_url: 'https://randomuser.me/api/portraits/men/32.jpg', role: 'vibe_coder', bio: 'Serial entrepreneur. Using AI to prototype ideas faster than ever.', location: 'Austin, TX', website_url: 'https://marcusj.com', github_url: 'https://github.com/marcusj' },
+    { id: '33333333-3333-3333-3333-333333333333', email: 'elena@example.com', name: 'Elena Rodriguez', avatar_url: 'https://randomuser.me/api/portraits/women/68.jpg', role: 'vibe_coder', bio: 'Former teacher building EdTech tools with AI assistance.', location: 'Miami, FL', github_url: 'https://github.com/elenarodriguez', twitter_url: 'https://twitter.com/elena_builds' },
+    { id: '44444444-4444-4444-4444-444444444444', email: 'james@example.com', name: 'James Wright', avatar_url: 'https://randomuser.me/api/portraits/men/75.jpg', role: 'vibe_coder', bio: 'Finance professional exploring fintech ideas on weekends.', location: 'New York, NY', website_url: 'https://jameswright.io', github_url: 'https://github.com/jwright' },
+    { id: '55555555-5555-5555-5555-555555555555', email: 'priya@example.com', name: 'Priya Patel', avatar_url: 'https://randomuser.me/api/portraits/women/90.jpg', role: 'vibe_coder', bio: 'Healthcare consultant building patient engagement tools.', location: 'Boston, MA', github_url: 'https://github.com/priyapatel', twitter_url: 'https://twitter.com/priya_health' },
   ];
 
   const { error: vibeCoderError } = await supabase.from('pv_profiles').upsert(vibeCoders);
@@ -34,12 +35,12 @@ async function seed() {
   console.log('Creating developer profiles...');
 
   const developers = [
-    { id: 'aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', email: 'alex@devstudio.com', name: 'Alex Kim', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alex', role: 'developer', bio: 'Full-stack developer specializing in React and Node.js. Love helping vibe coders ship their products.', location: 'Seattle, WA', website_url: 'https://alexkim.dev', github_url: 'https://github.com/alexkim', linkedin_url: 'https://linkedin.com/in/alexkim', twitter_url: 'https://twitter.com/alexkimdev' },
-    { id: 'bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', email: 'jordan@example.com', name: 'Jordan Taylor', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jordan', role: 'developer', bio: 'DevOps engineer and cloud architect. I make apps scale.', location: 'Denver, CO', website_url: 'https://jordantaylor.io', github_url: 'https://github.com/jtaylor', linkedin_url: 'https://linkedin.com/in/jordantaylor' },
-    { id: 'cccc3333-cccc-cccc-cccc-cccccccccccc', email: 'nina@example.com', name: 'Nina Kowalski', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Nina', role: 'developer', bio: 'Frontend specialist with a passion for beautiful UX. Tailwind enthusiast.', location: 'Portland, OR', website_url: 'https://ninakowalski.design', github_url: 'https://github.com/ninak', twitter_url: 'https://twitter.com/nina_codes' },
-    { id: 'dddd4444-dddd-dddd-dddd-dddddddddddd', email: 'omar@example.com', name: 'Omar Hassan', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Omar', role: 'developer', bio: 'Backend wizard. Python, Go, and everything databases.', location: 'Chicago, IL', website_url: 'https://omarhassan.dev', github_url: 'https://github.com/omarh', linkedin_url: 'https://linkedin.com/in/omarhassan' },
-    { id: 'eeee5555-eeee-eeee-eeee-eeeeeeeeeeee', email: 'lisa@example.com', name: 'Lisa Chen', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa', role: 'developer', bio: 'Mobile and web developer. Shipped 20+ apps to production.', location: 'Los Angeles, CA', website_url: 'https://lisachen.dev', github_url: 'https://github.com/lisac', linkedin_url: 'https://linkedin.com/in/lisachen', twitter_url: 'https://twitter.com/lisachendev' },
-    { id: 'ffff6666-ffff-ffff-ffff-ffffffffffff', email: 'david@example.com', name: 'David Park', avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=David', role: 'developer', bio: 'AI/ML engineer helping integrate smarter features into apps.', location: 'San Jose, CA', website_url: 'https://davidpark.ai', github_url: 'https://github.com/dpark', linkedin_url: 'https://linkedin.com/in/davidpark' },
+    { id: 'aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', email: 'alex@devstudio.com', name: 'Alex Kim', avatar_url: 'https://randomuser.me/api/portraits/men/22.jpg', role: 'developer', bio: 'Full-stack developer specializing in React and Node.js. Love helping vibe coders ship their products.', location: 'Seattle, WA', website_url: 'https://alexkim.dev', github_url: 'https://github.com/alexkim', linkedin_url: 'https://linkedin.com/in/alexkim', twitter_url: 'https://twitter.com/alexkimdev' },
+    { id: 'bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', email: 'jordan@example.com', name: 'Jordan Taylor', avatar_url: 'https://randomuser.me/api/portraits/men/45.jpg', role: 'developer', bio: 'DevOps engineer and cloud architect. I make apps scale.', location: 'Denver, CO', website_url: 'https://jordantaylor.io', github_url: 'https://github.com/jtaylor', linkedin_url: 'https://linkedin.com/in/jordantaylor' },
+    { id: 'cccc3333-cccc-cccc-cccc-cccccccccccc', email: 'nina@example.com', name: 'Nina Kowalski', avatar_url: 'https://randomuser.me/api/portraits/women/33.jpg', role: 'developer', bio: 'Frontend specialist with a passion for beautiful UX. Tailwind enthusiast.', location: 'Portland, OR', website_url: 'https://ninakowalski.design', github_url: 'https://github.com/ninak', twitter_url: 'https://twitter.com/nina_codes' },
+    { id: 'dddd4444-dddd-dddd-dddd-dddddddddddd', email: 'omar@example.com', name: 'Omar Hassan', avatar_url: 'https://randomuser.me/api/portraits/men/52.jpg', role: 'developer', bio: 'Backend wizard. Python, Go, and everything databases.', location: 'Chicago, IL', website_url: 'https://omarhassan.dev', github_url: 'https://github.com/omarh', linkedin_url: 'https://linkedin.com/in/omarhassan' },
+    { id: 'eeee5555-eeee-eeee-eeee-eeeeeeeeeeee', email: 'lisa@example.com', name: 'Lisa Chen', avatar_url: 'https://randomuser.me/api/portraits/women/21.jpg', role: 'developer', bio: 'Mobile and web developer. Shipped 20+ apps to production.', location: 'Los Angeles, CA', website_url: 'https://lisachen.dev', github_url: 'https://github.com/lisac', linkedin_url: 'https://linkedin.com/in/lisachen', twitter_url: 'https://twitter.com/lisachendev' },
+    { id: 'ffff6666-ffff-ffff-ffff-ffffffffffff', email: 'david@example.com', name: 'David Park', avatar_url: 'https://randomuser.me/api/portraits/men/67.jpg', role: 'developer', bio: 'AI/ML engineer helping integrate smarter features into apps.', location: 'San Jose, CA', website_url: 'https://davidpark.ai', github_url: 'https://github.com/dpark', linkedin_url: 'https://linkedin.com/in/davidpark' },
   ];
 
   const { error: devError } = await supabase.from('pv_profiles').upsert(developers);
@@ -75,6 +76,8 @@ async function seed() {
   // ============================================
   console.log('Creating launches...');
 
+  // Using picsum.photos for app screenshot placeholders - these look like real app UIs
+  // Format: https://picsum.photos/seed/{unique}/800/600 for consistent images
   const launches = [
     {
       id: '10101010-1010-1010-1010-101010101010',
@@ -98,7 +101,7 @@ async function seed() {
 ## My Vision
 I want this to be the go-to app for busy professionals who want to eat healthy without spending hours planning meals.`,
       short_description: 'AI-powered meal planning app that suggests recipes based on your fridge contents and dietary preferences.',
-      screenshot_urls: ['https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800'],
+      screenshot_urls: ['https://placehold.co/800x600/22C55E/white?text=RecipeAI%0AMeal+Planner'],
       tech_stack: ['Next.js', 'React', 'Supabase', 'OpenAI API', 'Tailwind CSS'],
       github_url: 'https://github.com/sarahchen/recipeai',
       demo_url: 'https://recipeai-demo.vercel.app',
@@ -133,7 +136,7 @@ I want this to be the go-to app for busy professionals who want to eat healthy w
 
 Looking for a developer who can take this from MVP to a polished product. Open to equity for the right partner!`,
       short_description: 'Simple invoicing tool for freelancers with payment tracking and PDF generation.',
-      screenshot_urls: ['https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800'],
+      screenshot_urls: ['https://placehold.co/800x600/3B82F6/white?text=InvoiceFlow%0AInvoicing+Dashboard'],
       tech_stack: ['React', 'Node.js', 'PostgreSQL', 'Resend', 'Puppeteer'],
       github_url: 'https://github.com/marcusj/invoiceflow',
       demo_url: 'https://invoiceflow-demo.vercel.app',
@@ -168,7 +171,7 @@ Looking for a developer who can take this from MVP to a polished product. Open t
 
 This could really help kids who can't afford private tutors!`,
       short_description: 'AI-powered tutoring platform providing 24/7 personalized learning assistance for students.',
-      screenshot_urls: ['https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800'],
+      screenshot_urls: ['https://placehold.co/800x600/8B5CF6/white?text=StudyBuddy%0AAI+Tutor+Chat'],
       tech_stack: ['Next.js', 'Claude API', 'Supabase', 'Tailwind CSS', 'Framer Motion'],
       demo_url: 'https://studybuddy-beta.vercel.app',
       services_needed: ['feature_development', 'bug_fixes', 'testing'],
@@ -201,7 +204,7 @@ This could really help kids who can't afford private tutors!`,
 
 Looking for a developer who understands fintech and can help make this rock solid.`,
       short_description: 'All-in-one investment tracking dashboard for stocks, crypto, and real estate.',
-      screenshot_urls: ['https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800'],
+      screenshot_urls: ['https://placehold.co/800x600/10B981/white?text=PortfolioTracker%0AInvestment+Charts'],
       tech_stack: ['React', 'Python', 'FastAPI', 'PostgreSQL', 'Plaid API', 'Chart.js'],
       github_url: 'https://github.com/jwright/portfoliotracker',
       services_needed: ['bug_fixes', 'feature_development', 'scaling'],
@@ -236,7 +239,7 @@ Looking for a developer who understands fintech and can help make this rock soli
 
 This needs to be bulletproof before launching - healthcare data is sensitive!`,
       short_description: 'Patient symptom tracking app with medication reminders and doctor-shareable reports.',
-      screenshot_urls: ['https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800'],
+      screenshot_urls: ['https://placehold.co/800x600/EC4899/white?text=HealthLog%0ASymptom+Tracker'],
       tech_stack: ['React Native', 'Supabase', 'Node.js', 'Chart.js'],
       demo_url: 'https://healthlog-demo.vercel.app',
       services_needed: ['code_cleanup', 'testing', 'deployment', 'full_launch'],
@@ -270,7 +273,7 @@ This needs to be bulletproof before launching - healthcare data is sensitive!`,
 
 Started this for my own wedding planning and realized others might find it useful!`,
       short_description: 'AI-powered event planning assistant for stress-free party and wedding organization.',
-      screenshot_urls: ['https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800'],
+      screenshot_urls: ['https://placehold.co/800x600/F59E0B/white?text=EventVibe%0AEvent+Planner'],
       tech_stack: ['Next.js', 'OpenAI API', 'Supabase', 'Resend', 'Tailwind CSS'],
       github_url: 'https://github.com/sarahchen/eventvibe',
       demo_url: 'https://eventvibe.vercel.app',
