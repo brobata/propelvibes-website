@@ -18,15 +18,15 @@ export async function GET(request: Request) {
 
       if (user) {
         const { data: existingProfile } = await supabase
-          .from("profiles")
+          .from("pv_profiles")
           .select("id")
-          .eq("id", user.id)
+          .eq("user_id", user.id)
           .single();
 
         if (!existingProfile) {
           // Create profile from user metadata
-          await supabase.from("profiles").insert({
-            id: user.id,
+          await supabase.from("pv_profiles").insert({
+            user_id: user.id,
             email: user.email!,
             name: user.user_metadata?.full_name || user.user_metadata?.name || "User",
             avatar_url: user.user_metadata?.avatar_url,

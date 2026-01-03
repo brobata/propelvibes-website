@@ -168,7 +168,7 @@ export default function PostLaunchPage() {
         + "-" + Date.now().toString(36);
 
       const { data: launch, error } = await supabase
-        .from("launches")
+        .from("pv_launches")
         .insert({
           owner_id: profile.id,
           title: data.title,

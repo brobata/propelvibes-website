@@ -104,7 +104,7 @@ export function ProposalModal({ launch, onClose }: ProposalModalProps) {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.from("proposals").insert({
+      const { error } = await supabase.from("pv_proposals").insert({
         launch_id: launch.id,
         developer_id: developerProfile.id,
         cover_letter: data.cover_letter,

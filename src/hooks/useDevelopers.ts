@@ -25,8 +25,8 @@ export function useDevelopers(filters?: DeveloperFilters): DevelopersState {
       setError(null);
 
       let query = supabase
-        .from("developer_profiles")
-        .select("*, user:profiles(*)", { count: "exact" })
+        .from("pv_developer_profiles")
+        .select("*, user:pv_profiles(*)", { count: "exact" })
         .order("rating", { ascending: false });
 
       // Apply filters
@@ -109,8 +109,8 @@ export function useDeveloper(id: string): {
         setError(null);
 
         const { data, error: queryError } = await supabase
-          .from("developer_profiles")
-          .select("*, user:profiles(*)")
+          .from("pv_developer_profiles")
+          .select("*, user:pv_profiles(*)")
           .eq("id", id)
           .single();
 
@@ -144,8 +144,8 @@ export function useTopDevelopers(limit: number = 4): DevelopersState {
       setError(null);
 
       const { data, error: queryError } = await supabase
-        .from("developer_profiles")
-        .select("*, user:profiles(*)")
+        .from("pv_developer_profiles")
+        .select("*, user:pv_profiles(*)")
         .eq("verified", true)
         .eq("availability", "available")
         .order("rating", { ascending: false })

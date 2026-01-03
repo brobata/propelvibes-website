@@ -26,11 +26,11 @@ export function useConversations(): ConversationsState {
       if (!user) throw new Error("Not authenticated");
 
       const { data, error: queryError } = await supabase
-        .from("conversations")
+        .from("pv_conversations")
         .select(`
           *,
-          launch:launches(*),
-          proposal:proposals(*)
+          launch:pv_launches(*),
+          proposal:pv_proposals(*)
         `)
         .contains("participant_ids", [user.id])
         .order("last_message_at", { ascending: false, nullsFirst: false });
@@ -52,13 +52,13 @@ export function useConversations(): ConversationsState {
   // Subscribe to realtime updates
   useEffect(() => {
     const channel = supabase
-      .channel("conversations")
+      .channel("pv_conversations")
       .on(
         "postgres_changes",
         {
           event: "*",
           schema: "public",
-          table: "conversations",
+          table: "pv_conversations",
         },
         () => {
           fetchConversations();
@@ -101,10 +101,10 @@ export function useMessages(conversationId: string): MessagesState {
       setError(null);
 
       const { data, error: queryError } = await supabase
-        .from("messages")
+        .from("pv_messages")
         .select(`
           *,
-          sender:profiles(*)
+          sender:pv_profiles(*)
         `)
         .eq("conversation_id", conversationId)
         .order("created_at", { ascending: true });
@@ -124,7 +124,7 @@ export function useMessages(conversationId: string): MessagesState {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Not authenticated");
 
-      const { error: insertError } = await supabase.from("messages").insert({
+      const { error: insertError } = await supabase.from("pv_messages").insert({
         conversation_id: conversationId,
         sender_id: user.id,
         content,
@@ -137,7 +137,7 @@ export function useMessages(conversationId: string): MessagesState {
 
       // Update conversation's last_message_at
       await supabase
-        .from("conversations")
+        .from("pv_conversations")
         .update({ last_message_at: new Date().toISOString() })
         .eq("id", conversationId);
 
@@ -155,13 +155,13 @@ export function useMessages(conversationId: string): MessagesState {
     if (!conversationId) return;
 
     const channel = supabase
-      .channel(`messages:${conversationId}`)
+      .channel(`pv_messages:${conversationId}`)
       .on(
         "postgres_changes",
         {
           event: "INSERT",
           schema: "public",
-          table: "messages",
+          table: "pv_messages",
           filter: `conversation_id=eq.${conversationId}`,
         },
         (payload) => {
@@ -192,7 +192,7 @@ export async function createConversation(
   const supabase = createClient();
 
   const { data, error } = await supabase
-    .from("conversations")
+    .from("pv_conversations")
     .insert({
       participant_ids: participantIds,
       launch_id: launchId || null,
@@ -213,7 +213,7 @@ export async function findOrCreateConversation(
 
   // Try to find existing conversation
   let query = supabase
-    .from("conversations")
+    .from("pv_conversations")
     .select("id")
     .contains("participant_ids", participantIds);
 

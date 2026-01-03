@@ -25,8 +25,8 @@ export function useLaunches(filters?: LaunchFilters): LaunchesState {
       setError(null);
 
       let query = supabase
-        .from("launches")
-        .select("*, owner:profiles(*)", { count: "exact" })
+        .from("pv_launches")
+        .select("*, owner:pv_profiles(*)", { count: "exact" })
         .in("status", ["open", "in_progress"])
         .order("created_at", { ascending: false });
 
@@ -101,8 +101,8 @@ export function useLaunch(slugOrId: string): {
 
         // Try by slug first, then by id
         let query = supabase
-          .from("launches")
-          .select("*, owner:profiles(*)")
+          .from("pv_launches")
+          .select("*, owner:pv_profiles(*)")
           .eq("slug", slugOrId)
           .single();
 
@@ -111,8 +111,8 @@ export function useLaunch(slugOrId: string): {
         // If not found by slug, try by id
         if (queryError && queryError.code === "PGRST116") {
           const { data: idData, error: idError } = await supabase
-            .from("launches")
-            .select("*, owner:profiles(*)")
+            .from("pv_launches")
+            .select("*, owner:pv_profiles(*)")
             .eq("id", slugOrId)
             .single();
 
@@ -126,7 +126,7 @@ export function useLaunch(slugOrId: string): {
 
         // Increment view count
         if (data) {
-          await supabase.rpc("increment_launch_views", { launch_id: data.id });
+          await supabase.rpc("pv_increment_launch_views", { p_launch_id: data.id });
         }
       } catch (err) {
         setError(err instanceof Error ? err : new Error("Failed to fetch launch"));
@@ -155,8 +155,8 @@ export function useFeaturedLaunches(limit: number = 6): LaunchesState {
       setError(null);
 
       const { data, error: queryError } = await supabase
-        .from("launches")
-        .select("*, owner:profiles(*)")
+        .from("pv_launches")
+        .select("*, owner:pv_profiles(*)")
         .eq("status", "open")
         .order("views", { ascending: false })
         .limit(limit);
@@ -198,10 +198,19 @@ export function useMyLaunches(): LaunchesState {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Not authenticated");
 
+      // First get the profile ID for this user
+      const { data: profile } = await supabase
+        .from("pv_profiles")
+        .select("id")
+        .eq("user_id", user.id)
+        .single();
+
+      if (!profile) throw new Error("Profile not found");
+
       const { data, error: queryError } = await supabase
-        .from("launches")
+        .from("pv_launches")
         .select("*")
-        .eq("owner_id", user.id)
+        .eq("owner_id", profile.id)
         .order("created_at", { ascending: false });
 
       if (queryError) throw queryError;

@@ -33,11 +33,11 @@ export function useAuth(): AuthState {
 
   const fetchProfile = useCallback(async (userId: string) => {
     try {
-      // Fetch profile
+      // Fetch profile by user_id (auth.users.id)
       const { data: profileData, error: profileError } = await supabase
-        .from("profiles")
+        .from("pv_profiles")
         .select("*")
-        .eq("id", userId)
+        .eq("user_id", userId)
         .single();
 
       if (profileError) throw profileError;
@@ -46,9 +46,9 @@ export function useAuth(): AuthState {
       // Fetch developer profile if exists
       if (profileData?.role === "developer" || profileData?.role === "both") {
         const { data: devData } = await supabase
-          .from("developer_profiles")
+          .from("pv_developer_profiles")
           .select("*")
-          .eq("user_id", userId)
+          .eq("profile_id", profileData.id)
           .single();
 
         setDeveloperProfile(devData);
@@ -113,17 +113,17 @@ export function useAuth(): AuthState {
 
     if (data.user) {
       // Create profile
-      await supabase.from("profiles").insert({
-        id: data.user.id,
+      const { data: profileData } = await supabase.from("pv_profiles").insert({
+        user_id: data.user.id,
         email,
         name,
         role,
-      });
+      }).select().single();
 
       // Create developer profile if developer
-      if (role === "developer") {
-        await supabase.from("developer_profiles").insert({
-          user_id: data.user.id,
+      if (role === "developer" && profileData) {
+        await supabase.from("pv_developer_profiles").insert({
+          profile_id: profileData.id,
           headline: "",
           skills: [],
         });
@@ -174,9 +174,9 @@ export function useAuth(): AuthState {
     if (!user) throw new Error("Not authenticated");
 
     const { error } = await supabase
-      .from("profiles")
+      .from("pv_profiles")
       .update(updates)
-      .eq("id", user.id);
+      .eq("user_id", user.id);
 
     if (error) throw error;
     await fetchProfile(user.id);
