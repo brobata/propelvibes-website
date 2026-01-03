@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { DeveloperProfile, DeveloperFilters } from "@/types/database";
 
@@ -17,13 +17,17 @@ export function useDevelopers(filters?: DeveloperFilters): DevelopersState {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [totalCount, setTotalCount] = useState(0);
-  const supabase = createClient();
+  const supabaseRef = useRef(createClient());
+
+  // Memoize filters to prevent unnecessary re-fetches
+  const filtersKey = useMemo(() => JSON.stringify(filters || {}), [filters]);
 
   const fetchDevelopers = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
 
+      const supabase = supabaseRef.current;
       let query = supabase
         .from("pv_developer_profiles")
         .select("*, user:pv_profiles(*)", { count: "exact" })
@@ -77,7 +81,7 @@ export function useDevelopers(filters?: DeveloperFilters): DevelopersState {
     } finally {
       setIsLoading(false);
     }
-  }, [supabase, filters]);
+  }, [filtersKey]);
 
   useEffect(() => {
     fetchDevelopers();
@@ -100,7 +104,7 @@ export function useDeveloper(id: string): {
   const [developer, setDeveloper] = useState<DeveloperProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const supabase = createClient();
+  const supabaseRef = useRef(createClient());
 
   useEffect(() => {
     const fetchDeveloper = async () => {
@@ -108,6 +112,7 @@ export function useDeveloper(id: string): {
         setIsLoading(true);
         setError(null);
 
+        const supabase = supabaseRef.current;
         const { data, error: queryError } = await supabase
           .from("pv_developer_profiles")
           .select("*, user:pv_profiles(*)")
@@ -127,7 +132,7 @@ export function useDeveloper(id: string): {
     if (id) {
       fetchDeveloper();
     }
-  }, [id, supabase]);
+  }, [id]);
 
   return { developer, isLoading, error };
 }
@@ -136,13 +141,14 @@ export function useTopDevelopers(limit: number = 4): DevelopersState {
   const [developers, setDevelopers] = useState<DeveloperProfile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const supabase = createClient();
+  const supabaseRef = useRef(createClient());
 
   const fetchDevelopers = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
 
+      const supabase = supabaseRef.current;
       const { data, error: queryError } = await supabase
         .from("pv_developer_profiles")
         .select("*, user:pv_profiles(*)")
@@ -160,7 +166,7 @@ export function useTopDevelopers(limit: number = 4): DevelopersState {
     } finally {
       setIsLoading(false);
     }
-  }, [supabase, limit]);
+  }, [limit]);
 
   useEffect(() => {
     fetchDevelopers();

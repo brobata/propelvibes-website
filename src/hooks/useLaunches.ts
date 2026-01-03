@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Launch, LaunchFilters } from "@/types/database";
 
@@ -17,13 +17,17 @@ export function useLaunches(filters?: LaunchFilters): LaunchesState {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [totalCount, setTotalCount] = useState(0);
-  const supabase = createClient();
+  const supabaseRef = useRef(createClient());
+
+  // Memoize filters to prevent unnecessary re-fetches
+  const filtersKey = useMemo(() => JSON.stringify(filters || {}), [filters]);
 
   const fetchLaunches = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
 
+      const supabase = supabaseRef.current;
       let query = supabase
         .from("pv_launches")
         .select("*, owner:pv_profiles(*)", { count: "exact" })
@@ -68,7 +72,7 @@ export function useLaunches(filters?: LaunchFilters): LaunchesState {
     } finally {
       setIsLoading(false);
     }
-  }, [supabase, filters]);
+  }, [filtersKey]);
 
   useEffect(() => {
     fetchLaunches();
@@ -91,13 +95,15 @@ export function useLaunch(slugOrId: string): {
   const [launch, setLaunch] = useState<Launch | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const supabase = createClient();
+  const supabaseRef = useRef(createClient());
 
   useEffect(() => {
     const fetchLaunch = async () => {
       try {
         setIsLoading(true);
         setError(null);
+
+        const supabase = supabaseRef.current;
 
         // Try by slug first, then by id
         let query = supabase
@@ -138,7 +144,7 @@ export function useLaunch(slugOrId: string): {
     if (slugOrId) {
       fetchLaunch();
     }
-  }, [slugOrId, supabase]);
+  }, [slugOrId]);
 
   return { launch, isLoading, error };
 }
@@ -147,13 +153,14 @@ export function useFeaturedLaunches(limit: number = 6): LaunchesState {
   const [launches, setLaunches] = useState<Launch[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const supabase = createClient();
+  const supabaseRef = useRef(createClient());
 
   const fetchLaunches = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
 
+      const supabase = supabaseRef.current;
       const { data, error: queryError } = await supabase
         .from("pv_launches")
         .select("*, owner:pv_profiles(*)")
@@ -169,7 +176,7 @@ export function useFeaturedLaunches(limit: number = 6): LaunchesState {
     } finally {
       setIsLoading(false);
     }
-  }, [supabase, limit]);
+  }, [limit]);
 
   useEffect(() => {
     fetchLaunches();
@@ -188,13 +195,14 @@ export function useMyLaunches(): LaunchesState {
   const [launches, setLaunches] = useState<Launch[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const supabase = createClient();
+  const supabaseRef = useRef(createClient());
 
   const fetchLaunches = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
 
+      const supabase = supabaseRef.current;
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Not authenticated");
 
@@ -221,7 +229,7 @@ export function useMyLaunches(): LaunchesState {
     } finally {
       setIsLoading(false);
     }
-  }, [supabase]);
+  }, []);
 
   useEffect(() => {
     fetchLaunches();
