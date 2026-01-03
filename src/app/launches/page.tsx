@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+export const dynamic = "force-dynamic";
+
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -11,148 +13,27 @@ import {
   DollarSign,
   Code,
   X,
-  ChevronDown,
 } from "lucide-react";
 import { PageLayout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getInitials } from "@/lib/utils";
+import { getInitials, formatCurrency } from "@/lib/utils";
+import { useLaunches } from "@/hooks/useLaunches";
+import type { ServiceCategory, DealType } from "@/types/database";
 
-// Demo data
-const allLaunches = [
-  {
-    id: "1",
-    title: "AI Recipe Generator",
-    short_description:
-      "A mobile app that generates personalized recipes based on ingredients you have. Built with React Native and Claude API.",
-    tech_stack: ["React Native", "Claude API", "Supabase"],
-    services_needed: ["deployment", "design"],
-    deal_types: ["fixed", "hourly"],
-    budget_min: 500,
-    budget_max: 2000,
-    views: 234,
-    proposals_count: 8,
-    owner: { name: "Sarah Chen", avatar_url: null },
-    created_at: "2024-01-15",
-  },
-  {
-    id: "2",
-    title: "Freelancer Invoice Tool",
-    short_description:
-      "Invoice management SaaS for freelancers. Has core functionality working but needs payment integration.",
-    tech_stack: ["Next.js", "Stripe", "PostgreSQL"],
-    services_needed: ["feature-development", "bug-fixes"],
-    deal_types: ["equity", "hybrid"],
-    equity_offered: 15,
-    views: 456,
-    proposals_count: 12,
-    owner: { name: "Marcus Johnson", avatar_url: null },
-    created_at: "2024-01-14",
-  },
-  {
-    id: "3",
-    title: "Habit Tracker with AI Coach",
-    short_description:
-      "Daily habit tracking app with an AI coach that provides personalized motivation.",
-    tech_stack: ["Flutter", "Firebase", "OpenAI"],
-    services_needed: ["scaling", "deployment"],
-    deal_types: ["fixed"],
-    budget_min: 1500,
-    budget_max: 4000,
-    views: 189,
-    proposals_count: 5,
-    owner: { name: "Emily Rodriguez", avatar_url: null },
-    created_at: "2024-01-13",
-  },
-  {
-    id: "4",
-    title: "Local Business Directory",
-    short_description:
-      "Neighborhood-focused business directory with reviews and booking. MVP is live but code needs refactoring.",
-    tech_stack: ["Vue.js", "Node.js", "MongoDB"],
-    services_needed: ["code-cleanup", "feature-development"],
-    deal_types: ["hourly", "equity"],
-    budget_min: 50,
-    budget_max: 75,
-    views: 312,
-    proposals_count: 9,
-    owner: { name: "David Kim", avatar_url: null },
-    created_at: "2024-01-12",
-  },
-  {
-    id: "5",
-    title: "Pet Care Scheduling App",
-    short_description:
-      "App connecting pet owners with local pet sitters. Has matching algorithm working.",
-    tech_stack: ["React", "Express", "Twilio"],
-    services_needed: ["feature-development", "testing"],
-    deal_types: ["fixed", "hybrid"],
-    budget_min: 2000,
-    budget_max: 5000,
-    views: 278,
-    proposals_count: 7,
-    owner: { name: "Lisa Patel", avatar_url: null },
-    created_at: "2024-01-11",
-  },
-  {
-    id: "6",
-    title: "Podcast Transcript Search",
-    short_description:
-      "Search engine for podcast transcripts using AI. Proof of concept works.",
-    tech_stack: ["Python", "FastAPI", "Pinecone"],
-    services_needed: ["scaling", "code-cleanup"],
-    deal_types: ["equity"],
-    equity_offered: 25,
-    views: 567,
-    proposals_count: 15,
-    owner: { name: "Alex Thompson", avatar_url: null },
-    created_at: "2024-01-10",
-  },
-  {
-    id: "7",
-    title: "E-commerce Dashboard",
-    short_description:
-      "Analytics dashboard for Shopify stores. Built with Cursor, needs performance optimization.",
-    tech_stack: ["Next.js", "Shopify API", "Chart.js"],
-    services_needed: ["scaling", "bug-fixes"],
-    deal_types: ["fixed", "hourly"],
-    budget_min: 1000,
-    budget_max: 3000,
-    views: 423,
-    proposals_count: 11,
-    owner: { name: "Jordan Lee", avatar_url: null },
-    created_at: "2024-01-09",
-  },
-  {
-    id: "8",
-    title: "Virtual Study Room",
-    short_description:
-      "Pomodoro-style study rooms with video chat for students. Core features done, needs polishing.",
-    tech_stack: ["React", "WebRTC", "Socket.io"],
-    services_needed: ["design", "deployment"],
-    deal_types: ["hybrid"],
-    budget_min: 800,
-    budget_max: 2500,
-    views: 198,
-    proposals_count: 6,
-    owner: { name: "Priya Sharma", avatar_url: null },
-    created_at: "2024-01-08",
-  },
-];
-
-const serviceOptions = [
-  { value: "code-cleanup", label: "Code Cleanup" },
-  { value: "feature-development", label: "Features" },
-  { value: "bug-fixes", label: "Bug Fixes" },
+const serviceOptions: { value: ServiceCategory; label: string }[] = [
+  { value: "code_cleanup", label: "Code Cleanup" },
+  { value: "feature_development", label: "Features" },
+  { value: "bug_fixes", label: "Bug Fixes" },
   { value: "deployment", label: "Deployment" },
   { value: "design", label: "Design" },
   { value: "testing", label: "Testing" },
   { value: "scaling", label: "Scaling" },
 ];
 
-const dealOptions = [
+const dealOptions: { value: DealType; label: string }[] = [
   { value: "fixed", label: "Fixed Price" },
   { value: "hourly", label: "Hourly" },
   { value: "equity", label: "Equity" },
@@ -160,50 +41,39 @@ const dealOptions = [
 ];
 
 const serviceLabels: Record<string, string> = {
-  "code-cleanup": "Code Cleanup",
-  "feature-development": "Features",
-  "bug-fixes": "Bug Fixes",
+  code_cleanup: "Code Cleanup",
+  feature_development: "Features",
+  bug_fixes: "Bug Fixes",
   deployment: "Deployment",
   design: "Design",
   testing: "Testing",
   scaling: "Scaling",
-  "full-launch": "Full Launch",
+  full_launch: "Full Launch",
 };
 
 export default function LaunchesPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [selectedDeals, setSelectedDeals] = useState<string[]>([]);
+  const [selectedServices, setSelectedServices] = useState<ServiceCategory[]>([]);
+  const [selectedDeals, setSelectedDeals] = useState<DealType[]>([]);
   const [showFilters, setShowFilters] = useState(false);
 
-  // Filter launches
-  const filteredLaunches = allLaunches.filter((launch) => {
-    const matchesSearch =
-      searchQuery === "" ||
-      launch.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      launch.short_description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      launch.tech_stack.some((tech) =>
-        tech.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+  // Build filters object
+  const filters = useMemo(() => ({
+    search: searchQuery || undefined,
+    services: selectedServices.length > 0 ? selectedServices : undefined,
+    deal_types: selectedDeals.length > 0 ? selectedDeals : undefined,
+  }), [searchQuery, selectedServices, selectedDeals]);
 
-    const matchesServices =
-      selectedServices.length === 0 ||
-      launch.services_needed.some((s) => selectedServices.includes(s));
+  // Fetch launches from Supabase
+  const { launches, isLoading, totalCount } = useLaunches(filters);
 
-    const matchesDeals =
-      selectedDeals.length === 0 ||
-      launch.deal_types.some((d) => selectedDeals.includes(d));
-
-    return matchesSearch && matchesServices && matchesDeals;
-  });
-
-  const toggleService = (service: string) => {
+  const toggleService = (service: ServiceCategory) => {
     setSelectedServices((prev) =>
       prev.includes(service) ? prev.filter((s) => s !== service) : [...prev, service]
     );
   };
 
-  const toggleDeal = (deal: string) => {
+  const toggleDeal = (deal: DealType) => {
     setSelectedDeals((prev) =>
       prev.includes(deal) ? prev.filter((d) => d !== deal) : [...prev, deal]
     );
@@ -347,21 +217,40 @@ export default function LaunchesPage() {
       {/* Results */}
       <section className="section-padding">
         <div className="container-custom">
+          {/* Loading State */}
+          {isLoading && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="aspect-video bg-surface rounded-t-xl" />
+                  <div className="p-5 bg-background border border-border border-t-0 rounded-b-xl space-y-3">
+                    <div className="h-5 w-3/4 bg-surface rounded" />
+                    <div className="h-4 w-full bg-surface rounded" />
+                    <div className="h-4 w-2/3 bg-surface rounded" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Results Count */}
-          <p className="text-sm text-text-muted mb-6">
-            Showing {filteredLaunches.length} of {allLaunches.length} launches
-          </p>
+          {!isLoading && (
+            <p className="text-sm text-text-muted mb-6">
+              Showing {launches.length} of {totalCount} launches
+            </p>
+          )}
 
           {/* Grid */}
+          {!isLoading && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredLaunches.map((launch, index) => (
+            {launches.map((launch, index) => (
               <motion.div
                 key={launch.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
               >
-                <Link href={`/launches/${launch.id}`} className="block group">
+                <Link href={`/launches/${launch.slug}`} className="block group">
                   <div className="bg-background border border-border rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-lg transition-all duration-300">
                     {/* Screenshot Placeholder */}
                     <div className="aspect-video bg-gradient-to-br from-surface to-surface-hover relative overflow-hidden">
@@ -378,9 +267,9 @@ export default function LaunchesPage() {
                           {launch.title}
                         </h3>
                         <Avatar className="w-7 h-7 shrink-0">
-                          <AvatarImage src={launch.owner.avatar_url || undefined} />
+                          <AvatarImage src={launch.owner?.avatar_url || undefined} />
                           <AvatarFallback className="text-xs">
-                            {getInitials(launch.owner.name)}
+                            {getInitials(launch.owner?.name || "User")}
                           </AvatarFallback>
                         </Avatar>
                       </div>
@@ -420,8 +309,7 @@ export default function LaunchesPage() {
                           <DollarSign className="w-4 h-4" />
                           {launch.budget_min && launch.budget_max ? (
                             <span>
-                              ${launch.budget_min.toLocaleString()} - $
-                              {launch.budget_max.toLocaleString()}
+                              {formatCurrency(launch.budget_min / 100)} - {formatCurrency(launch.budget_max / 100)}
                             </span>
                           ) : launch.equity_offered ? (
                             <span>{launch.equity_offered}% Equity</span>
@@ -437,8 +325,10 @@ export default function LaunchesPage() {
             ))}
           </div>
 
+          )}
+
           {/* Empty State */}
-          {filteredLaunches.length === 0 && (
+          {!isLoading && launches.length === 0 && (
             <div className="text-center py-16">
               <div className="w-16 h-16 rounded-full bg-surface flex items-center justify-center mx-auto mb-4">
                 <Search className="w-8 h-8 text-text-muted" />

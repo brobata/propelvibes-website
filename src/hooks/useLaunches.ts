@@ -1,0 +1,228 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import { createClient } from "@/lib/supabase/client";
+import type { Launch, LaunchFilters } from "@/types/database";
+
+export interface LaunchesState {
+  launches: Launch[];
+  isLoading: boolean;
+  error: Error | null;
+  totalCount: number;
+  refresh: () => Promise<void>;
+}
+
+export function useLaunches(filters?: LaunchFilters): LaunchesState {
+  const [launches, setLaunches] = useState<Launch[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const [totalCount, setTotalCount] = useState(0);
+  const supabase = createClient();
+
+  const fetchLaunches = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      let query = supabase
+        .from("launches")
+        .select("*, owner:profiles(*)", { count: "exact" })
+        .in("status", ["open", "in_progress"])
+        .order("created_at", { ascending: false });
+
+      // Apply filters
+      if (filters?.search) {
+        query = query.or(
+          `title.ilike.%${filters.search}%,short_description.ilike.%${filters.search}%`
+        );
+      }
+
+      if (filters?.services && filters.services.length > 0) {
+        query = query.overlaps("services_needed", filters.services);
+      }
+
+      if (filters?.deal_types && filters.deal_types.length > 0) {
+        query = query.overlaps("deal_types_accepted", filters.deal_types);
+      }
+
+      if (filters?.tech_stack && filters.tech_stack.length > 0) {
+        query = query.overlaps("tech_stack", filters.tech_stack);
+      }
+
+      if (filters?.budget_min) {
+        query = query.gte("budget_min", filters.budget_min);
+      }
+
+      if (filters?.budget_max) {
+        query = query.lte("budget_max", filters.budget_max);
+      }
+
+      const { data, error: queryError, count } = await query;
+
+      if (queryError) throw queryError;
+
+      setLaunches(data || []);
+      setTotalCount(count || 0);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error("Failed to fetch launches"));
+    } finally {
+      setIsLoading(false);
+    }
+  }, [supabase, filters]);
+
+  useEffect(() => {
+    fetchLaunches();
+  }, [fetchLaunches]);
+
+  return {
+    launches,
+    isLoading,
+    error,
+    totalCount,
+    refresh: fetchLaunches,
+  };
+}
+
+export function useLaunch(slugOrId: string): {
+  launch: Launch | null;
+  isLoading: boolean;
+  error: Error | null;
+} {
+  const [launch, setLaunch] = useState<Launch | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const supabase = createClient();
+
+  useEffect(() => {
+    const fetchLaunch = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        // Try by slug first, then by id
+        let query = supabase
+          .from("launches")
+          .select("*, owner:profiles(*)")
+          .eq("slug", slugOrId)
+          .single();
+
+        let { data, error: queryError } = await query;
+
+        // If not found by slug, try by id
+        if (queryError && queryError.code === "PGRST116") {
+          const { data: idData, error: idError } = await supabase
+            .from("launches")
+            .select("*, owner:profiles(*)")
+            .eq("id", slugOrId)
+            .single();
+
+          data = idData;
+          queryError = idError;
+        }
+
+        if (queryError) throw queryError;
+
+        setLaunch(data);
+
+        // Increment view count
+        if (data) {
+          await supabase.rpc("increment_launch_views", { launch_id: data.id });
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error("Failed to fetch launch"));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (slugOrId) {
+      fetchLaunch();
+    }
+  }, [slugOrId, supabase]);
+
+  return { launch, isLoading, error };
+}
+
+export function useFeaturedLaunches(limit: number = 6): LaunchesState {
+  const [launches, setLaunches] = useState<Launch[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const supabase = createClient();
+
+  const fetchLaunches = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const { data, error: queryError } = await supabase
+        .from("launches")
+        .select("*, owner:profiles(*)")
+        .eq("status", "open")
+        .order("views", { ascending: false })
+        .limit(limit);
+
+      if (queryError) throw queryError;
+
+      setLaunches(data || []);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error("Failed to fetch featured launches"));
+    } finally {
+      setIsLoading(false);
+    }
+  }, [supabase, limit]);
+
+  useEffect(() => {
+    fetchLaunches();
+  }, [fetchLaunches]);
+
+  return {
+    launches,
+    isLoading,
+    error,
+    totalCount: launches.length,
+    refresh: fetchLaunches,
+  };
+}
+
+export function useMyLaunches(): LaunchesState {
+  const [launches, setLaunches] = useState<Launch[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const supabase = createClient();
+
+  const fetchLaunches = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error("Not authenticated");
+
+      const { data, error: queryError } = await supabase
+        .from("launches")
+        .select("*")
+        .eq("owner_id", user.id)
+        .order("created_at", { ascending: false });
+
+      if (queryError) throw queryError;
+
+      setLaunches(data || []);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error("Failed to fetch your launches"));
+    } finally {
+      setIsLoading(false);
+    }
+  }, [supabase]);
+
+  useEffect(() => {
+    fetchLaunches();
+  }, [fetchLaunches]);
+
+  return {
+    launches,
+    isLoading,
+    error,
+    totalCount: launches.length,
+    refresh: fetchLaunches,
+  };
+}
