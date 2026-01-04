@@ -18,17 +18,24 @@ Propel Vibes is a marketplace connecting "vibe coders" (non-technical creators w
 
 ## Design System
 
-### Color Palette (Fresh Green Theme)
-- Primary: `#22C55E` (fresh green)
-- Primary Dark: `#16A34A`
-- Primary Light: `#4ADE80`
-- Accent: `#F59E0B` (amber - for badges)
-- Background: `#FAFAF9` (warm off-white)
+### Color Palette (Classic Marketplace)
+- Primary: `#2563EB` (trustworthy blue)
+- Primary Dark: `#1D4ED8`
+- Primary Light: `#3B82F6`
+- Accent: `#EA580C` (practical orange - for actions)
+- Background: `#F9FAFB` (clean white/gray)
+
+### Design Philosophy
+- **Classic marketplace aesthetic** (early eBay/Etsy practical)
+- Simple borders, minimal shadows, small border-radius
+- No fancy animations - quick, functional hover states
+- Checkbox-based filters (not pill buttons)
+- Text-focused navigation, no gradient icons
 
 ### Card Style
-- eBay-style horizontal cards: image LEFT, content RIGHT
-- Sidebar filters on browse pages
-- Green availability rings on developer avatars
+- Horizontal list cards: image LEFT, content RIGHT
+- Simple border hover (no transforms or shadows)
+- Compact, information-dense layout
 
 ## Database Schema
 
@@ -71,12 +78,12 @@ npx tsx scripts/seed.ts  # Run with env vars to seed DB
 
 ## Recent Changes (Jan 2026)
 
-1. **Marketplace Redesign** - Changed from SaaS dashboard to eBay-style marketplace
-2. **Fresh Green Palette** - New color scheme distinct from Ops Suite apps
-3. **Horizontal Cards** - Image left, content right layout
-4. **Sidebar Filters** - Collapsible filter sections
-5. **Fixed re-render loop** - useRef for Supabase client stability
-6. **Better seed images** - randomuser.me for avatars, CSS fallbacks for screenshots
+1. **Classic Marketplace Redesign** - Removed modern AI-app aesthetics
+2. **Blue/Gray Palette** - Trustworthy, functional colors (not flashy green)
+3. **Removed Framer Motion** - No animations, instant interactions
+4. **Simplified Components** - Plain CSS hover states, checkbox filters
+5. **Compact Layout** - Smaller spacing, denser information display
+6. **Fixed re-render loop** - useRef for Supabase client stability
 
 ## Conventions
 

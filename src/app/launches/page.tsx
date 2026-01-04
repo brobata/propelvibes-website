@@ -196,9 +196,9 @@ export default function LaunchesPage() {
 
               {/* Results List */}
               {!isLoading && sortedLaunches.length > 0 && (
-                <div className="space-y-4">
-                  {sortedLaunches.map((launch, index) => (
-                    <LaunchCard key={launch.id} launch={launch} index={index} />
+                <div className="space-y-3">
+                  {sortedLaunches.map((launch) => (
+                    <LaunchCard key={launch.id} launch={launch} />
                   ))}
                 </div>
               )}

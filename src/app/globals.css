@@ -1,75 +1,75 @@
 @import "tailwindcss";
 
 /* ============================================
-   PROPEL VIBES - Marketplace Design System
-   Fresh, Growth-Focused, eBay/Kickstarter Style
+   PROPEL VIBES - Classic Marketplace Design
+   Functional, Fast, Trustworthy
    ============================================ */
 
 :root {
-  /* Primary - Fresh Green (Growth, Success, Action) */
-  --primary: #22C55E;
-  --primary-light: #4ADE80;
-  --primary-dark: #16A34A;
-  --primary-50: #F0FDF4;
-  --primary-100: #DCFCE7;
-  --primary-200: #BBF7D0;
+  /* Primary - Muted Blue (Trust, Reliability) */
+  --primary: #2563EB;
+  --primary-light: #3B82F6;
+  --primary-dark: #1D4ED8;
+  --primary-50: #EFF6FF;
+  --primary-100: #DBEAFE;
+  --primary-200: #BFDBFE;
 
-  /* Secondary - Slate (Professional text) */
-  --secondary: #475569;
-  --secondary-light: #64748B;
-  --secondary-dark: #334155;
+  /* Secondary - Neutral Gray */
+  --secondary: #4B5563;
+  --secondary-light: #6B7280;
+  --secondary-dark: #374151;
 
-  /* Accent - Amber (Urgency, Featured, Hot) */
-  --accent: #F59E0B;
-  --accent-light: #FCD34D;
-  --accent-dark: #D97706;
+  /* Accent - Practical Orange (Action, Urgency) */
+  --accent: #EA580C;
+  --accent-light: #F97316;
+  --accent-dark: #C2410C;
 
-  /* Backgrounds - Warm off-white */
-  --background: #FAFAF9;
+  /* Backgrounds - Clean white/gray */
+  --background: #F9FAFB;
   --background-pure: #FFFFFF;
-  --surface: #F5F5F4;
-  --surface-hover: #E7E5E4;
+  --surface: #F3F4F6;
+  --surface-hover: #E5E7EB;
 
-  /* Borders */
-  --border: #E7E5E4;
-  --border-strong: #D6D3D1;
+  /* Borders - Visible but not harsh */
+  --border: #D1D5DB;
+  --border-strong: #9CA3AF;
 
-  /* Text */
-  --text-primary: #1C1917;
-  --text-secondary: #57534E;
-  --text-muted: #A8A29E;
+  /* Text - High contrast for readability */
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
   --text-inverse: #FFFFFF;
 
-  /* Status Colors */
-  --success: #22C55E;
+  /* Status Colors - Standard, recognizable */
+  --success: #16A34A;
   --success-light: #DCFCE7;
-  --warning: #F59E0B;
-  --warning-light: #FEF3C7;
-  --error: #EF4444;
+  --warning: #CA8A04;
+  --warning-light: #FEF9C3;
+  --error: #DC2626;
   --error-light: #FEE2E2;
-  --info: #3B82F6;
+  --info: #2563EB;
   --info-light: #DBEAFE;
 
-  /* Shadows */
+  /* Shadows - Minimal, subtle */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 2px 4px 0 rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 2px 4px 0 rgb(0 0 0 / 0.1);
 
-  /* Radius */
-  --radius-sm: 0.375rem;
-  --radius: 0.5rem;
-  --radius-md: 0.625rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
+  /* Radius - Small and practical */
+  --radius-sm: 2px;
+  --radius: 3px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+  --radius-2xl: 6px;
   --radius-full: 9999px;
 
-  /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* Transitions - Quick, no fancy easing */
+  --transition-fast: 100ms ease;
+  --transition: 150ms ease;
+  --transition-slow: 200ms ease;
 }
 
 @theme inline {
@@ -155,10 +155,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary);
 }
 
 /* ============================================
@@ -212,77 +209,77 @@ body {
    ============================================ */
 
 .card {
-  background: var(--background);
+  background: var(--background-pure);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  transition: box-shadow var(--transition), transform var(--transition);
+  border-radius: var(--radius);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-lg);
+  border-color: var(--border-strong);
 }
 
-.card-interactive:hover {
-  transform: translateY(-2px);
-}
-
-/* Badge styles */
+/* Badge styles - simple, text-based */
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  border-radius: var(--radius-full);
+  padding: 0.125rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   background: var(--surface);
   color: var(--text-secondary);
 }
 
 .badge-primary {
-  background: var(--primary-100);
+  background: var(--primary-50);
+  border-color: var(--primary-200);
   color: var(--primary-dark);
 }
 
 .badge-success {
   background: var(--success-light);
-  color: #065F46;
+  border-color: #BBF7D0;
+  color: #166534;
 }
 
 .badge-warning {
   background: var(--warning-light);
-  color: #92400E;
+  border-color: #FDE68A;
+  color: #854D0E;
 }
 
 .badge-accent {
-  background: var(--accent);
-  color: var(--text-inverse);
-  font-weight: 600;
+  background: #FFF7ED;
+  border-color: #FDBA74;
+  color: var(--accent-dark);
 }
 
 /* ============================================
-   Marketplace Card Styles
+   Marketplace Card Styles - Classic List View
    ============================================ */
 
 .marketplace-card {
   display: flex;
   background: var(--background-pure);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   overflow: hidden;
-  transition: all var(--transition);
 }
 
 .marketplace-card:hover {
-  border-color: var(--primary);
-  box-shadow: 0 4px 20px -4px rgb(34 197 94 / 0.15);
-  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  background: var(--surface);
 }
 
 .marketplace-card-image {
   flex-shrink: 0;
-  width: 200px;
+  width: 180px;
   background: var(--surface);
   position: relative;
+  border-right: 1px solid var(--border);
 }
 
 @media (max-width: 640px) {
@@ -291,13 +288,15 @@ body {
   }
   .marketplace-card-image {
     width: 100%;
-    height: 160px;
+    height: 140px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
   }
 }
 
 .marketplace-card-content {
   flex: 1;
-  padding: 1.25rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -305,128 +304,48 @@ body {
 
 .hot-badge {
   position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  background: var(--accent);
-  color: var(--text-inverse);
-  padding: 0.25rem 0.625rem;
-  border-radius: var(--radius-full);
-  font-size: 0.6875rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: var(--warning-light);
+  color: #854D0E;
+  border: 1px solid #FDE68A;
+  padding: 0.125rem 0.375rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.625rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
 }
 
 .new-badge {
   position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  background: var(--primary);
-  color: var(--text-inverse);
-  padding: 0.25rem 0.625rem;
-  border-radius: var(--radius-full);
-  font-size: 0.6875rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: var(--primary-50);
+  color: var(--primary-dark);
+  border: 1px solid var(--primary-200);
+  padding: 0.125rem 0.375rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.625rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
 }
 
-/* Availability ring for developer avatars */
+/* Availability indicator - simple border */
 .availability-ring {
-  padding: 3px;
+  padding: 2px;
   border-radius: 9999px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  border: 2px solid var(--success);
 }
 
 .availability-ring-busy {
-  background: linear-gradient(135deg, var(--warning) 0%, var(--accent-light) 100%);
+  border-color: var(--warning);
 }
 
 /* ============================================
-   Animation Keyframes
+   Minimal Animations - Keep it simple
    ============================================ */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
 
 @keyframes shimmer {
   0% {
@@ -436,47 +355,6 @@ body {
     background-position: 200% 0;
   }
 }
-
-/* Animation classes */
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.animate-fade-in-down {
-  animation: fadeInDown 0.6s ease-out forwards;
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.5s ease-out forwards;
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.5s ease-out forwards;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.4s ease-out forwards;
-}
-
-.animate-bounce-slow {
-  animation: bounce 2s ease-in-out infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Stagger delays */
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
-.delay-600 { animation-delay: 600ms; }
 
 /* ============================================
    Skeleton Loading

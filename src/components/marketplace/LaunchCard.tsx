@@ -2,17 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Eye, MessageSquare, Heart, Clock, Code2 } from "lucide-react";
+import { Eye, MessageSquare, Clock, Code2 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { Launch } from "@/types/database";
 
 interface LaunchCardProps {
   launch: Launch;
-  index?: number;
 }
 
-export function LaunchCard({ launch, index = 0 }: LaunchCardProps) {
+export function LaunchCard({ launch }: LaunchCardProps) {
   const owner = launch.owner as { name?: string; avatar_url?: string; location?: string } | undefined;
 
   // Format budget display
@@ -42,114 +40,98 @@ export function LaunchCard({ launch, index = 0 }: LaunchCardProps) {
   const remainingTech = (launch.tech_stack?.length || 0) - 4;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
-    >
-      <Link href={`/launches/${launch.slug}`} className="block">
-        <article className="marketplace-card group">
-          {/* Image Section */}
-          <div className="marketplace-card-image">
-            {launch.screenshot_urls?.[0] && !launch.screenshot_urls[0].includes('placehold') ? (
-              <Image
-                src={launch.screenshot_urls[0]}
-                alt={launch.title}
-                fill
-                className="object-cover"
-              />
-            ) : (
-              <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-50 flex flex-col items-center justify-center p-4">
-                <Code2 className="w-10 h-10 text-primary mb-2" />
-                <span className="text-xs font-medium text-primary-dark text-center line-clamp-2">
-                  {launch.title}
-                </span>
-              </div>
-            )}
-            {badge && (
-              <span className={badge.type === "hot" ? "hot-badge" : "new-badge"}>
-                {badge.label}
-              </span>
-            )}
-          </div>
-
-          {/* Content Section */}
-          <div className="marketplace-card-content">
-            {/* Header */}
-            <div className="flex items-start justify-between gap-3 mb-2">
-              <h3 className="text-lg font-semibold text-text-primary group-hover:text-primary transition-colors line-clamp-1">
+    <Link href={`/launches/${launch.slug}`} className="block">
+      <article className="marketplace-card">
+        {/* Image Section */}
+        <div className="marketplace-card-image">
+          {launch.screenshot_urls?.[0] && !launch.screenshot_urls[0].includes('placehold') ? (
+            <Image
+              src={launch.screenshot_urls[0]}
+              alt={launch.title}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-surface flex flex-col items-center justify-center p-4">
+              <Code2 className="w-8 h-8 text-text-muted mb-1" />
+              <span className="text-xs text-text-muted text-center line-clamp-2">
                 {launch.title}
-              </h3>
-              <button
-                className="flex-shrink-0 p-1.5 rounded-full hover:bg-surface transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  // TODO: Save functionality
-                }}
-              >
-                <Heart className="w-4 h-4 text-text-muted hover:text-primary" />
-              </button>
-            </div>
-
-            {/* Owner info */}
-            <div className="flex items-center gap-2 mb-3">
-              <Avatar className="w-5 h-5">
-                <AvatarImage src={owner?.avatar_url} />
-                <AvatarFallback className="text-[10px]">
-                  {owner?.name?.charAt(0) || "U"}
-                </AvatarFallback>
-              </Avatar>
-              <span className="text-sm text-text-muted">
-                by {owner?.name || "Anonymous"}
-                {owner?.location && ` · ${owner.location}`}
               </span>
             </div>
+          )}
+          {badge && (
+            <span className={badge.type === "hot" ? "hot-badge" : "new-badge"}>
+              {badge.label}
+            </span>
+          )}
+        </div>
 
-            {/* Description */}
-            <p className="text-sm text-text-secondary line-clamp-2 mb-3 flex-grow">
-              {launch.short_description}
-            </p>
+        {/* Content Section */}
+        <div className="marketplace-card-content">
+          {/* Header */}
+          <h3 className="text-base font-semibold text-text-primary hover:text-primary mb-1 line-clamp-1">
+            {launch.title}
+          </h3>
 
-            {/* Tech Stack */}
-            <div className="flex flex-wrap gap-1.5 mb-4">
-              {techStackToShow.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2 py-0.5 text-xs font-medium rounded-full bg-primary-50 text-primary-dark"
-                >
-                  {tech}
-                </span>
-              ))}
-              {remainingTech > 0 && (
-                <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-surface text-text-muted">
-                  +{remainingTech} more
-                </span>
-              )}
-            </div>
-
-            {/* Footer Stats */}
-            <div className="flex items-center gap-4 pt-3 border-t border-border text-sm">
-              <span className="font-semibold text-primary">
-                {formatBudget()}
-              </span>
-              <div className="flex items-center gap-1 text-text-muted">
-                <Eye className="w-3.5 h-3.5" />
-                <span>{launch.views || 0}</span>
-              </div>
-              <div className="flex items-center gap-1 text-text-muted">
-                <MessageSquare className="w-3.5 h-3.5" />
-                <span>{launch.proposals_count || 0}</span>
-              </div>
-              {launch.timeline_days && (
-                <div className="flex items-center gap-1 text-text-muted ml-auto">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>{launch.timeline_days}d</span>
-                </div>
-              )}
-            </div>
+          {/* Owner info */}
+          <div className="flex items-center gap-2 mb-2 text-sm text-text-muted">
+            <Avatar className="w-4 h-4">
+              <AvatarImage src={owner?.avatar_url} />
+              <AvatarFallback className="text-[9px]">
+                {owner?.name?.charAt(0) || "U"}
+              </AvatarFallback>
+            </Avatar>
+            <span>
+              {owner?.name || "Anonymous"}
+              {owner?.location && ` · ${owner.location}`}
+            </span>
           </div>
-        </article>
-      </Link>
-    </motion.div>
+
+          {/* Description */}
+          <p className="text-sm text-text-secondary line-clamp-2 mb-2 flex-grow">
+            {launch.short_description}
+          </p>
+
+          {/* Tech Stack */}
+          <div className="flex flex-wrap gap-1 mb-3">
+            {techStackToShow.map((tech) => (
+              <span
+                key={tech}
+                className="px-1.5 py-0.5 text-xs border border-border rounded bg-surface text-text-secondary"
+              >
+                {tech}
+              </span>
+            ))}
+            {remainingTech > 0 && (
+              <span className="px-1.5 py-0.5 text-xs text-text-muted">
+                +{remainingTech}
+              </span>
+            )}
+          </div>
+
+          {/* Footer Stats */}
+          <div className="flex items-center gap-3 pt-2 border-t border-border text-sm">
+            <span className="font-semibold text-primary">
+              {formatBudget()}
+            </span>
+            <span className="text-text-muted">·</span>
+            <span className="text-text-muted flex items-center gap-1">
+              <Eye className="w-3 h-3" />
+              {launch.views || 0}
+            </span>
+            <span className="text-text-muted flex items-center gap-1">
+              <MessageSquare className="w-3 h-3" />
+              {launch.proposals_count || 0} bids
+            </span>
+            {launch.timeline_days && (
+              <span className="text-text-muted flex items-center gap-1 ml-auto">
+                <Clock className="w-3 h-3" />
+                {launch.timeline_days}d
+              </span>
+            )}
+          </div>
+        </div>
+      </article>
+    </Link>
   );
 }

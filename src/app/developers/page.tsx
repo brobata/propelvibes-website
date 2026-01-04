@@ -215,9 +215,9 @@ export default function DevelopersPage() {
 
               {/* Results List */}
               {!isLoading && sortedDevelopers.length > 0 && (
-                <div className="space-y-4">
-                  {sortedDevelopers.map((developer, index) => (
-                    <DeveloperCard key={developer.id} developer={developer} index={index} />
+                <div className="space-y-3">
+                  {sortedDevelopers.map((developer) => (
+                    <DeveloperCard key={developer.id} developer={developer} />
                   ))}
                 </div>
               )}
