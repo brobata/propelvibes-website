@@ -8,6 +8,9 @@ import {
   X,
   LogIn,
   ChevronDown,
+  Sparkles,
+  Shield,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,6 +26,12 @@ const categoryLinks = [
   { href: "/launches?tech=React+Native", label: "Mobile" },
   { href: "/launches?services=feature_development", label: "SaaS" },
   { href: "/launches?services=full_launch", label: "Full Launch" },
+];
+
+const valueProps = [
+  { icon: Sparkles, label: "Vibe Coders Welcome" },
+  { icon: Shield, label: "Verified Developers" },
+  { icon: Zap, label: "Ship Faster" },
 ];
 
 export function Navbar() {
@@ -46,10 +55,22 @@ export function Navbar() {
 
   return (
     <>
+      {/* Top Bar - Value Props */}
+      <div className="bg-primary text-text-inverse text-xs py-1.5 hidden md:block">
+        <div className="container-custom flex items-center justify-center gap-6">
+          {valueProps.map((prop) => (
+            <div key={prop.label} className="flex items-center gap-1.5">
+              <prop.icon className="w-3.5 h-3.5" />
+              <span>{prop.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 bg-background-pure border-b",
-          isScrolled ? "border-border" : "border-transparent"
+          "sticky top-0 left-0 right-0 z-50 bg-background-pure border-b",
+          isScrolled ? "border-border shadow-sm" : "border-border"
         )}
       >
         <nav className="container-custom">
@@ -57,9 +78,12 @@ export function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="font-bold text-lg text-text-primary hover:text-primary"
+              className="flex items-center gap-2 font-bold text-lg text-text-primary hover:text-primary"
             >
-              Propel Vibes
+              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+                <Sparkles className="w-4.5 h-4.5 text-white" />
+              </div>
+              <span>Propel Vibes</span>
             </Link>
 
             {/* Desktop Navigation */}

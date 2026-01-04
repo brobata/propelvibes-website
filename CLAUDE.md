@@ -18,24 +18,28 @@ Propel Vibes is a marketplace connecting "vibe coders" (non-technical creators w
 
 ## Design System
 
-### Color Palette (Classic Marketplace)
-- Primary: `#2563EB` (trustworthy blue)
-- Primary Dark: `#1D4ED8`
-- Primary Light: `#3B82F6`
-- Accent: `#EA580C` (practical orange - for actions)
-- Background: `#F9FAFB` (clean white/gray)
+### Brand Identity: "Where Dreamers Ship"
+Friendly, approachable marketplace that welcomes vibe coders and connects them with developers.
+
+### Color Palette (Teal/Cyan - Fresh & Creative)
+- Primary: `#0D9488` (teal - fresh, tech-forward)
+- Primary Dark: `#0F766E`
+- Primary Light: `#14B8A6`
+- Accent: `#F97316` (coral - warm, action-oriented)
+- Highlight: `#8B5CF6` (purple - for featured items)
+- Background: `#FAFAF9` (warm off-white)
 
 ### Design Philosophy
-- **Classic marketplace aesthetic** (early eBay/Etsy practical)
-- Simple borders, minimal shadows, small border-radius
-- No fancy animations - quick, functional hover states
-- Checkbox-based filters (not pill buttons)
-- Text-focused navigation, no gradient icons
+- **Warm & inviting** - gradients, subtle shadows, friendly rounded corners
+- **Distinctive identity** - teal top bar with value props, branded hero
+- **Clear personality** - "Vibe Coders Welcome", "Verified Developers", "Ship Faster"
+- **Visual hierarchy** - price tags, tech pills, glowing availability rings
 
 ### Card Style
-- Horizontal list cards: image LEFT, content RIGHT
-- Simple border hover (no transforms or shadows)
-- Compact, information-dense layout
+- Horizontal cards with gradient image backgrounds
+- Hover: teal border glow + soft shadow
+- Price tags with primary-50 background
+- Tech pills with hover interaction
 
 ## Database Schema
 
@@ -78,11 +82,11 @@ npx tsx scripts/seed.ts  # Run with env vars to seed DB
 
 ## Recent Changes (Jan 2026)
 
-1. **Classic Marketplace Redesign** - Removed modern AI-app aesthetics
-2. **Blue/Gray Palette** - Trustworthy, functional colors (not flashy green)
-3. **Removed Framer Motion** - No animations, instant interactions
-4. **Simplified Components** - Plain CSS hover states, checkbox filters
-5. **Compact Layout** - Smaller spacing, denser information display
+1. **Brand Identity Redesign** - "Where Dreamers Ship" personality
+2. **Teal/Cyan Palette** - Fresh, creative, distinctive (not generic blue)
+3. **Value Props Banner** - Teal top bar with "Vibe Coders Welcome" etc.
+4. **Hero Section** - Big tagline, dual CTAs, quick stats
+5. **Warm Card Styling** - Gradients, shadows, price tags, tech pills
 6. **Fixed re-render loop** - useRef for Supabase client stability
 
 ## Conventions

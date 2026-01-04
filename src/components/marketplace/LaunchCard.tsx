@@ -93,40 +93,38 @@ export function LaunchCard({ launch }: LaunchCardProps) {
           </p>
 
           {/* Tech Stack */}
-          <div className="flex flex-wrap gap-1 mb-3">
+          <div className="flex flex-wrap gap-1.5 mb-3">
             {techStackToShow.map((tech) => (
-              <span
-                key={tech}
-                className="px-1.5 py-0.5 text-xs border border-border rounded bg-surface text-text-secondary"
-              >
+              <span key={tech} className="tech-pill">
                 {tech}
               </span>
             ))}
             {remainingTech > 0 && (
-              <span className="px-1.5 py-0.5 text-xs text-text-muted">
-                +{remainingTech}
+              <span className="text-xs text-text-muted self-center">
+                +{remainingTech} more
               </span>
             )}
           </div>
 
           {/* Footer Stats */}
-          <div className="flex items-center gap-3 pt-2 border-t border-border text-sm">
-            <span className="font-semibold text-primary">
+          <div className="flex items-center gap-4 pt-3 border-t border-border text-sm">
+            <span className="price-tag">
               {formatBudget()}
             </span>
-            <span className="text-text-muted">·</span>
-            <span className="text-text-muted flex items-center gap-1">
-              <Eye className="w-3 h-3" />
-              {launch.views || 0}
-            </span>
-            <span className="text-text-muted flex items-center gap-1">
-              <MessageSquare className="w-3 h-3" />
-              {launch.proposals_count || 0} bids
-            </span>
+            <div className="flex items-center gap-3 text-text-muted">
+              <span className="flex items-center gap-1">
+                <Eye className="w-3.5 h-3.5" />
+                {launch.views || 0}
+              </span>
+              <span className="flex items-center gap-1">
+                <MessageSquare className="w-3.5 h-3.5" />
+                {launch.proposals_count || 0} bids
+              </span>
+            </div>
             {launch.timeline_days && (
               <span className="text-text-muted flex items-center gap-1 ml-auto">
-                <Clock className="w-3 h-3" />
-                {launch.timeline_days}d
+                <Clock className="w-3.5 h-3.5" />
+                {launch.timeline_days} days
               </span>
             )}
           </div>

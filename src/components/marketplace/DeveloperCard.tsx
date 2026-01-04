@@ -82,30 +82,26 @@ export function DeveloperCard({ developer }: DeveloperCardProps) {
           </div>
 
           {/* Skills */}
-          <div className="flex flex-wrap gap-1 mb-2">
+          <div className="flex flex-wrap gap-1.5 mb-3">
             {skillsToShow.map((skill) => (
-              <span
-                key={skill}
-                className="px-1.5 py-0.5 text-xs border border-border rounded bg-surface text-text-secondary"
-              >
+              <span key={skill} className="tech-pill">
                 {skill}
               </span>
             ))}
             {remainingSkills > 0 && (
-              <span className="px-1.5 py-0.5 text-xs text-text-muted">
-                +{remainingSkills}
+              <span className="text-xs text-text-muted self-center">
+                +{remainingSkills} more
               </span>
             )}
           </div>
 
           {/* Footer */}
-          <div className="flex items-center gap-3 pt-2 border-t border-border text-sm">
-            <span className="font-semibold text-primary">
+          <div className="flex items-center gap-4 pt-3 border-t border-border text-sm">
+            <span className="price-tag">
               {formatRate()}
             </span>
-            <span className="text-text-muted">·</span>
             <span className="text-text-muted">
-              {developer.launches_completed || 0} completed
+              {developer.launches_completed || 0} launches completed
             </span>
           </div>
         </div>

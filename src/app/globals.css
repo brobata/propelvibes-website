@@ -1,79 +1,84 @@
 @import "tailwindcss";
 
 /* ============================================
-   PROPEL VIBES - Classic Marketplace Design
-   Functional, Fast, Trustworthy
+   PROPEL VIBES - Where Dreamers Ship
+   Friendly, Approachable, Distinctive
    ============================================ */
 
 :root {
-  /* Primary - Muted Blue (Trust, Reliability) */
-  --primary: #2563EB;
-  --primary-light: #3B82F6;
-  --primary-dark: #1D4ED8;
-  --primary-50: #EFF6FF;
-  --primary-100: #DBEAFE;
-  --primary-200: #BFDBFE;
+  /* Primary - Teal/Cyan (Fresh, Creative, Tech-forward) */
+  --primary: #0D9488;
+  --primary-light: #14B8A6;
+  --primary-dark: #0F766E;
+  --primary-50: #F0FDFA;
+  --primary-100: #CCFBF1;
+  --primary-200: #99F6E4;
 
-  /* Secondary - Neutral Gray */
-  --secondary: #4B5563;
-  --secondary-light: #6B7280;
-  --secondary-dark: #374151;
+  /* Secondary - Warm Slate */
+  --secondary: #64748B;
+  --secondary-light: #94A3B8;
+  --secondary-dark: #475569;
 
-  /* Accent - Practical Orange (Action, Urgency) */
-  --accent: #EA580C;
-  --accent-light: #F97316;
-  --accent-dark: #C2410C;
+  /* Accent - Warm Coral (Friendly, Action) */
+  --accent: #F97316;
+  --accent-light: #FB923C;
+  --accent-dark: #EA580C;
 
-  /* Backgrounds - Clean white/gray */
-  --background: #F9FAFB;
+  /* Highlight - Soft Purple (Featured items) */
+  --highlight: #8B5CF6;
+  --highlight-light: #A78BFA;
+  --highlight-50: #F5F3FF;
+
+  /* Backgrounds - Warm, inviting */
+  --background: #FAFAF9;
   --background-pure: #FFFFFF;
-  --surface: #F3F4F6;
-  --surface-hover: #E5E7EB;
+  --surface: #F5F5F4;
+  --surface-hover: #E7E5E4;
 
-  /* Borders - Visible but not harsh */
-  --border: #D1D5DB;
-  --border-strong: #9CA3AF;
+  /* Borders - Soft */
+  --border: #E7E5E4;
+  --border-strong: #D6D3D1;
 
-  /* Text - High contrast for readability */
-  --text-primary: #111827;
-  --text-secondary: #4B5563;
-  --text-muted: #6B7280;
+  /* Text - Warm grays */
+  --text-primary: #1C1917;
+  --text-secondary: #57534E;
+  --text-muted: #A8A29E;
   --text-inverse: #FFFFFF;
 
-  /* Status Colors - Standard, recognizable */
-  --success: #16A34A;
-  --success-light: #DCFCE7;
-  --warning: #CA8A04;
-  --warning-light: #FEF9C3;
-  --error: #DC2626;
+  /* Status Colors */
+  --success: #10B981;
+  --success-light: #D1FAE5;
+  --warning: #F59E0B;
+  --warning-light: #FEF3C7;
+  --error: #EF4444;
   --error-light: #FEE2E2;
-  --info: #2563EB;
-  --info-light: #DBEAFE;
+  --info: #0D9488;
+  --info-light: #CCFBF1;
 
-  /* Shadows - Minimal, subtle */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 2px 4px 0 rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 2px 4px 0 rgb(0 0 0 / 0.1);
+  /* Shadows - Soft, warm */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
 
-  /* Radius - Small and practical */
-  --radius-sm: 2px;
-  --radius: 3px;
-  --radius-md: 4px;
-  --radius-lg: 4px;
-  --radius-xl: 6px;
-  --radius-2xl: 6px;
+  /* Radius - Friendly, rounded */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
   --radius-full: 9999px;
 
-  /* Transitions - Quick, no fancy easing */
+  /* Transitions */
   --transition-fast: 100ms ease;
   --transition: 150ms ease;
   --transition-slow: 200ms ease;
 }
 
 @theme inline {
-  /* Primary Colors - Fresh Green */
+  /* Primary Colors - Teal */
   --color-primary: var(--primary);
   --color-primary-light: var(--primary-light);
   --color-primary-dark: var(--primary-dark);
@@ -81,15 +86,20 @@
   --color-primary-100: var(--primary-100);
   --color-primary-200: var(--primary-200);
 
-  /* Secondary Colors - Slate */
+  /* Secondary Colors - Warm Slate */
   --color-secondary: var(--secondary);
   --color-secondary-light: var(--secondary-light);
   --color-secondary-dark: var(--secondary-dark);
 
-  /* Accent Colors - Amber */
+  /* Accent Colors - Coral */
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-accent-dark: var(--accent-dark);
+
+  /* Highlight Colors - Purple */
+  --color-highlight: var(--highlight);
+  --color-highlight-light: var(--highlight-light);
+  --color-highlight-50: var(--highlight-50);
 
   /* Backgrounds */
   --color-background: var(--background);
@@ -258,28 +268,29 @@ body {
 }
 
 /* ============================================
-   Marketplace Card Styles - Classic List View
+   Marketplace Card Styles - Warm & Inviting
    ============================================ */
 
 .marketplace-card {
   display: flex;
   background: var(--background-pure);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
 }
 
 .marketplace-card:hover {
-  border-color: var(--border-strong);
-  background: var(--surface);
+  border-color: var(--primary-200);
+  box-shadow: var(--shadow-md);
 }
 
 .marketplace-card-image {
   flex-shrink: 0;
-  width: 180px;
-  background: var(--surface);
+  width: 200px;
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--surface) 100%);
   position: relative;
-  border-right: 1px solid var(--border);
 }
 
 @media (max-width: 640px) {
@@ -288,59 +299,105 @@ body {
   }
   .marketplace-card-image {
     width: 100%;
-    height: 140px;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
+    height: 160px;
   }
 }
 
 .marketplace-card-content {
   flex: 1;
-  padding: 1rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
+/* Featured badge - uses highlight purple */
+.featured-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: var(--highlight);
+  color: var(--text-inverse);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 4px rgb(139 92 246 / 0.3);
+}
+
 .hot-badge {
   position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  background: var(--warning-light);
-  color: #854D0E;
-  border: 1px solid #FDE68A;
-  padding: 0.125rem 0.375rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.625rem;
-  font-weight: 700;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: var(--accent);
+  color: var(--text-inverse);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.6875rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 4px rgb(249 115 22 / 0.3);
 }
 
 .new-badge {
   position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  background: var(--primary-50);
-  color: var(--primary-dark);
-  border: 1px solid var(--primary-200);
-  padding: 0.125rem 0.375rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.625rem;
-  font-weight: 700;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: var(--primary);
+  color: var(--text-inverse);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.6875rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 4px rgb(13 148 136 / 0.3);
 }
 
-/* Availability indicator - simple border */
+/* Availability indicator - glowing ring */
 .availability-ring {
-  padding: 2px;
+  padding: 3px;
   border-radius: 9999px;
-  border: 2px solid var(--success);
+  background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+  box-shadow: 0 0 8px rgb(16 185 129 / 0.4);
 }
 
 .availability-ring-busy {
-  border-color: var(--warning);
+  background: linear-gradient(135deg, var(--warning) 0%, #FBBF24 100%);
+  box-shadow: 0 0 8px rgb(245 158 11 / 0.4);
+}
+
+/* Price tag styling */
+.price-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: var(--primary-50);
+  color: var(--primary-dark);
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+/* Tech stack pills */
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  background: var(--surface);
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.tech-pill:hover {
+  background: var(--primary-100);
+  color: var(--primary-dark);
 }
 
 /* ============================================
