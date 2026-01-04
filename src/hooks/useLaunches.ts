@@ -31,6 +31,7 @@ export function useLaunches(filters?: LaunchFilters): LaunchesState {
       let query = supabase
         .from("pv_launches")
         .select("*, owner:pv_profiles(*)", { count: "exact" })
+        .eq("approval_status", "approved")
         .in("status", ["open", "in_progress"])
         .order("created_at", { ascending: false });
 
@@ -164,6 +165,7 @@ export function useFeaturedLaunches(limit: number = 6): LaunchesState {
       const { data, error: queryError } = await supabase
         .from("pv_launches")
         .select("*, owner:pv_profiles(*)")
+        .eq("approval_status", "approved")
         .eq("status", "open")
         .order("views", { ascending: false })
         .limit(limit);

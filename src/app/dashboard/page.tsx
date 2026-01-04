@@ -17,6 +17,8 @@ import {
   Star,
   Clock,
   CheckCircle2,
+  XCircle,
+  AlertCircle,
 } from "lucide-react";
 import { PageLayout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
@@ -284,8 +286,10 @@ export default function DashboardPage() {
                       {launches.slice(0, 3).map((launch) => (
                         <Link
                           key={launch.id}
-                          href={`/launches/${launch.slug}`}
-                          className="block p-4 bg-surface rounded-lg hover:bg-surface-hover transition-colors"
+                          href={launch.approval_status === "approved" ? `/launches/${launch.slug}` : "#"}
+                          className={`block p-4 bg-surface rounded-lg transition-colors ${
+                            launch.approval_status === "approved" ? "hover:bg-surface-hover" : "cursor-default"
+                          }`}
                         >
                           <div className="flex items-start justify-between gap-4">
                             <div className="flex-1 min-w-0">
@@ -305,18 +309,49 @@ export default function DashboardPage() {
                                   {launch.proposals_count}
                                 </span>
                               </div>
+                              {/* Rejection reason if rejected */}
+                              {launch.approval_status === "rejected" && launch.rejection_reason && (
+                                <div className="mt-2 p-2 bg-red-50 border border-red-100 rounded text-xs text-red-600">
+                                  <strong>Reason:</strong> {launch.rejection_reason}
+                                </div>
+                              )}
                             </div>
-                            <Badge
-                              variant={
-                                launch.status === "open"
-                                  ? "success"
-                                  : launch.status === "in_progress"
-                                  ? "warning"
-                                  : "default"
-                              }
-                            >
-                              {launch.status.replace("_", " ")}
-                            </Badge>
+                            <div className="flex flex-col items-end gap-1">
+                              {/* Approval Status Badge */}
+                              {launch.approval_status === "pending" && (
+                                <Badge className="bg-amber-100 text-amber-700">
+                                  <Clock className="w-3 h-3 mr-1" />
+                                  Pending Review
+                                </Badge>
+                              )}
+                              {launch.approval_status === "approved" && (
+                                <Badge className="bg-green-100 text-green-700">
+                                  <CheckCircle2 className="w-3 h-3 mr-1" />
+                                  Approved
+                                </Badge>
+                              )}
+                              {launch.approval_status === "rejected" && (
+                                <Badge className="bg-red-100 text-red-700">
+                                  <XCircle className="w-3 h-3 mr-1" />
+                                  Rejected
+                                </Badge>
+                              )}
+                              {/* Launch Status Badge (only if approved) */}
+                              {launch.approval_status === "approved" && (
+                                <Badge
+                                  variant={
+                                    launch.status === "open"
+                                      ? "success"
+                                      : launch.status === "in_progress"
+                                      ? "warning"
+                                      : "default"
+                                  }
+                                  className="text-xs"
+                                >
+                                  {launch.status.replace("_", " ")}
+                                </Badge>
+                              )}
+                            </div>
                           </div>
                         </Link>
                       ))}

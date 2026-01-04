@@ -1,7 +1,8 @@
 // Database types matching Supabase schema
 
 export type UserRole = "vibe_coder" | "developer" | "both" | "admin";
-export type LaunchStatus = "draft" | "open" | "in_progress" | "completed" | "cancelled";
+export type LaunchStatus = "draft" | "pending_review" | "approved" | "rejected" | "open" | "in_progress" | "completed" | "cancelled";
+export type ApprovalStatus = "pending" | "approved" | "rejected";
 export type DealType = "fixed" | "hourly" | "equity" | "hybrid";
 export type ServiceCategory =
   | "code_cleanup"
@@ -29,6 +30,7 @@ export interface Profile {
   github_url: string | null;
   linkedin_url: string | null;
   twitter_url: string | null;
+  is_admin: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -64,7 +66,7 @@ export interface Launch {
   slug: string;
   description: string;
   short_description: string;
-  screenshot_urls: string[];
+  screenshot_urls: string[]; // Must have at least 3
   video_url: string | null;
   tech_stack: string[];
   github_url: string | null;
@@ -76,6 +78,14 @@ export interface Launch {
   equity_offered: number | null; // percentage
   timeline_days: number | null;
   status: LaunchStatus;
+  // Verification fields
+  verification_code: string | null; // e.g., "PV-7X3K"
+  verification_photo_url: string | null; // Photo of app with handwritten code
+  approval_status: ApprovalStatus;
+  rejection_reason: string | null;
+  reviewed_by: string | null;
+  reviewed_at: string | null;
+  // Stats
   views: number;
   proposals_count: number;
   featured: boolean;
