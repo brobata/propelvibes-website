@@ -10,13 +10,14 @@ ADD COLUMN IF NOT EXISTS rejection_reason TEXT,
 ADD COLUMN IF NOT EXISTS reviewed_by UUID REFERENCES pv_profiles(id),
 ADD COLUMN IF NOT EXISTS reviewed_at TIMESTAMPTZ;
 
--- Update existing status enum to include pending_review
--- First drop the constraint if it exists
-ALTER TABLE pv_launches DROP CONSTRAINT IF EXISTS pv_launches_status_check;
-
--- Add new constraint with updated values
-ALTER TABLE pv_launches ADD CONSTRAINT pv_launches_status_check
-CHECK (status IN ('draft', 'pending_review', 'approved', 'rejected', 'open', 'in_progress', 'completed', 'cancelled'));
+-- Add pending_review to the enum type (if not already exists)
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_enum WHERE enumlabel = 'pending_review' AND enumtypid = 'pv_launch_status'::regtype) THEN
+    ALTER TYPE pv_launch_status ADD VALUE 'pending_review';
+  END IF;
+END
+$$;
 
 -- Set existing launches to approved (grandfathered in)
 UPDATE pv_launches SET approval_status = 'approved' WHERE approval_status IS NULL;
