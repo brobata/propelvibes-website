@@ -30,7 +30,7 @@ export function useLaunches(filters?: LaunchFilters): LaunchesState {
       const supabase = supabaseRef.current;
       let query = supabase
         .from("pv_launches")
-        .select("*, owner:pv_profiles(*)", { count: "exact" })
+        .select("*, owner:pv_profiles!owner_id(*)", { count: "exact" })
         .eq("approval_status", "approved")
         .in("status", ["open", "in_progress"])
         .order("created_at", { ascending: false });
@@ -109,7 +109,7 @@ export function useLaunch(slugOrId: string): {
         // Try by slug first, then by id
         let query = supabase
           .from("pv_launches")
-          .select("*, owner:pv_profiles(*)")
+          .select("*, owner:pv_profiles!owner_id(*)")
           .eq("slug", slugOrId)
           .single();
 
@@ -119,7 +119,7 @@ export function useLaunch(slugOrId: string): {
         if (queryError && queryError.code === "PGRST116") {
           const { data: idData, error: idError } = await supabase
             .from("pv_launches")
-            .select("*, owner:pv_profiles(*)")
+            .select("*, owner:pv_profiles!owner_id(*)")
             .eq("id", slugOrId)
             .single();
 
@@ -164,7 +164,7 @@ export function useFeaturedLaunches(limit: number = 6): LaunchesState {
       const supabase = supabaseRef.current;
       const { data, error: queryError } = await supabase
         .from("pv_launches")
-        .select("*, owner:pv_profiles(*)")
+        .select("*, owner:pv_profiles!owner_id(*)")
         .eq("approval_status", "approved")
         .eq("status", "open")
         .order("views", { ascending: false })
