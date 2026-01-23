@@ -17,20 +17,19 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Propel Vibes - Turn Your Vibe-Coded App Into a Real Product",
+    default: "Propel Vibes - Ship Your App with Pro Developers",
     template: "%s | Propel Vibes",
   },
   description:
-    "Connect with developers who specialize in taking AI-built MVPs to market. Post your vibe-coded app and get proposals from verified developers.",
+    "Connect with verified developers who specialize in taking AI-built apps to production. Get proposals from experienced professionals.",
   keywords: [
-    "vibe coding",
     "AI app development",
     "MVP development",
     "developer marketplace",
-    "Claude",
-    "Cursor",
     "app launch",
     "freelance developers",
+    "ship app",
+    "production ready",
   ],
   authors: [{ name: "Propel Vibes" }],
   creator: "Propel Vibes",
@@ -39,9 +38,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://propelvibes.com",
     siteName: "Propel Vibes",
-    title: "Propel Vibes - Turn Your Vibe-Coded App Into a Real Product",
+    title: "Propel Vibes - Ship Your App with Pro Developers",
     description:
-      "Connect with developers who specialize in taking AI-built MVPs to market.",
+      "Connect with verified developers who specialize in taking AI-built apps to production.",
     images: [
       {
         url: "/og-image.png",
@@ -53,9 +52,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Propel Vibes - Turn Your Vibe-Coded App Into a Real Product",
+    title: "Propel Vibes - Ship Your App with Pro Developers",
     description:
-      "Connect with developers who specialize in taking AI-built MVPs to market.",
+      "Connect with verified developers who specialize in taking AI-built apps to production.",
     images: ["/og-image.png"],
   },
   robots: {
