@@ -1,41 +1,47 @@
 @import "tailwindcss";
 
 /* ============================================
-   PROPEL VIBES - Where Dreamers Ship
-   Friendly, Approachable, Distinctive
+   PROPEL VIBES - Clean Marketplace with Soul
+   eBay/Etsy inspired + warm creative touch
    ============================================ */
 
 :root {
-  /* Primary - Teal/Cyan (Fresh, Creative, Tech-forward) */
-  --primary: #0D9488;
-  --primary-light: #14B8A6;
-  --primary-dark: #0F766E;
-  --primary-50: #F0FDFA;
-  --primary-100: #CCFBF1;
-  --primary-200: #99F6E4;
+  /* Primary - Friendly Blue */
+  --primary: #2563EB;
+  --primary-light: #3B82F6;
+  --primary-dark: #1D4ED8;
+  --primary-50: #EFF6FF;
+  --primary-100: #DBEAFE;
+  --primary-200: #BFDBFE;
 
-  /* Secondary - Warm Slate */
+  /* Secondary - Warm Gray */
   --secondary: #64748B;
   --secondary-light: #94A3B8;
   --secondary-dark: #475569;
 
-  /* Accent - Warm Coral (Friendly, Action) */
-  --accent: #F97316;
-  --accent-light: #FB923C;
-  --accent-dark: #EA580C;
+  /* Accent - Warm Orange (for CTAs, highlights) */
+  --accent: #EA580C;
+  --accent-light: #F97316;
+  --accent-dark: #C2410C;
+  --accent-50: #FFF7ED;
 
-  /* Highlight - Soft Purple (Featured items) */
-  --highlight: #8B5CF6;
-  --highlight-light: #A78BFA;
+  /* Success - Teal (available, online) */
+  --success: #0D9488;
+  --success-light: #14B8A6;
+  --success-50: #F0FDFA;
+
+  /* Highlight - Purple (featured items) */
+  --highlight: #7C3AED;
+  --highlight-light: #8B5CF6;
   --highlight-50: #F5F3FF;
 
-  /* Backgrounds - Warm, inviting */
+  /* Backgrounds - Warm, not sterile */
   --background: #FAFAF9;
   --background-pure: #FFFFFF;
   --surface: #F5F5F4;
   --surface-hover: #E7E5E4;
 
-  /* Borders - Soft */
+  /* Borders */
   --border: #E7E5E4;
   --border-strong: #D6D3D1;
 
@@ -45,30 +51,26 @@
   --text-muted: #A8A29E;
   --text-inverse: #FFFFFF;
 
-  /* Status Colors */
-  --success: #10B981;
-  --success-light: #D1FAE5;
-  --warning: #F59E0B;
+  /* Status */
+  --warning: #D97706;
   --warning-light: #FEF3C7;
-  --error: #EF4444;
+  --error: #DC2626;
   --error-light: #FEE2E2;
-  --info: #0D9488;
-  --info-light: #CCFBF1;
+  --info: #2563EB;
+  --info-light: #DBEAFE;
 
   /* Shadows - Soft, warm */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
 
-  /* Radius - Friendly, rounded */
+  /* Radius - Friendly but not bubbly */
   --radius-sm: 4px;
   --radius: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
-  --radius-2xl: 20px;
   --radius-full: 9999px;
 
   /* Transitions */
@@ -78,7 +80,6 @@
 }
 
 @theme inline {
-  /* Primary Colors - Teal */
   --color-primary: var(--primary);
   --color-primary-light: var(--primary-light);
   --color-primary-dark: var(--primary-dark);
@@ -86,40 +87,36 @@
   --color-primary-100: var(--primary-100);
   --color-primary-200: var(--primary-200);
 
-  /* Secondary Colors - Warm Slate */
   --color-secondary: var(--secondary);
   --color-secondary-light: var(--secondary-light);
   --color-secondary-dark: var(--secondary-dark);
 
-  /* Accent Colors - Coral */
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-accent-dark: var(--accent-dark);
+  --color-accent-50: var(--accent-50);
 
-  /* Highlight Colors - Purple */
+  --color-success: var(--success);
+  --color-success-light: var(--success-light);
+  --color-success-50: var(--success-50);
+
   --color-highlight: var(--highlight);
   --color-highlight-light: var(--highlight-light);
   --color-highlight-50: var(--highlight-50);
 
-  /* Backgrounds */
   --color-background: var(--background);
   --color-background-pure: var(--background-pure);
   --color-surface: var(--surface);
   --color-surface-hover: var(--surface-hover);
 
-  /* Borders */
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
 
-  /* Text */
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
   --color-text-inverse: var(--text-inverse);
 
-  /* Status */
-  --color-success: var(--success);
-  --color-success-light: var(--success-light);
   --color-warning: var(--warning);
   --color-warning-light: var(--warning-light);
   --color-error: var(--error);
@@ -127,13 +124,11 @@
   --color-info: var(--info);
   --color-info-light: var(--info-light);
 
-  /* Fonts */
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 
-  /* Shadows */
   --shadow-card: var(--shadow);
-  --shadow-card-hover: var(--shadow-lg);
+  --shadow-card-hover: var(--shadow-md);
 }
 
 /* ============================================
@@ -154,90 +149,71 @@ body {
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 /* ============================================
-   Typography Utilities
-   ============================================ */
-
-.text-balance {
-  text-wrap: balance;
-}
-
-.text-gradient {
-  color: var(--primary);
-}
-
-/* ============================================
-   Layout Utilities
+   Layout
    ============================================ */
 
 .container-custom {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 @media (min-width: 768px) {
   .container-custom {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container-custom {
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 
 .section-padding {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 @media (min-width: 768px) {
   .section-padding {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section-padding {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
   }
 }
 
 /* ============================================
-   Component Utilities
+   Cards - Clean with warmth
    ============================================ */
 
 .card {
   background: var(--background-pure);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
 }
 
 .card:hover {
   border-color: var(--border-strong);
+  box-shadow: var(--shadow);
 }
 
-/* Badge styles - simple, text-based */
+/* ============================================
+   Badges
+   ============================================ */
+
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.125rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.025em;
-  border: 1px solid var(--border);
+  letter-spacing: 0.02em;
   border-radius: var(--radius-sm);
   background: var(--surface);
   color: var(--text-secondary);
@@ -245,37 +221,38 @@ body {
 
 .badge-primary {
   background: var(--primary-50);
-  border-color: var(--primary-200);
   color: var(--primary-dark);
 }
 
 .badge-success {
-  background: var(--success-light);
-  border-color: #BBF7D0;
-  color: #166534;
+  background: var(--success-50);
+  color: var(--success);
 }
 
 .badge-warning {
   background: var(--warning-light);
-  border-color: #FDE68A;
-  color: #854D0E;
+  color: var(--warning);
 }
 
 .badge-accent {
-  background: #FFF7ED;
-  border-color: #FDBA74;
-  color: var(--accent-dark);
+  background: var(--accent-50);
+  color: var(--accent);
+}
+
+.badge-highlight {
+  background: var(--highlight-50);
+  color: var(--highlight);
 }
 
 /* ============================================
-   Marketplace Card Styles - Warm & Inviting
+   Marketplace Cards
    ============================================ */
 
 .marketplace-card {
   display: flex;
   background: var(--background-pure);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition);
@@ -284,6 +261,7 @@ body {
 .marketplace-card:hover {
   border-color: var(--primary-200);
   box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 .marketplace-card-image {
@@ -291,6 +269,16 @@ body {
   width: 200px;
   background: linear-gradient(135deg, var(--primary-50) 0%, var(--surface) 100%);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marketplace-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.02) 100%);
 }
 
 @media (max-width: 640px) {
@@ -311,7 +299,7 @@ body {
   min-width: 0;
 }
 
-/* Featured badge - uses highlight purple */
+/* Featured/Hot/New badges */
 .featured-badge {
   position: absolute;
   top: 0.75rem;
@@ -319,12 +307,13 @@ body {
   background: var(--highlight);
   color: var(--text-inverse);
   padding: 0.25rem 0.5rem;
-  border-radius: var(--radius);
-  font-size: 0.6875rem;
-  font-weight: 600;
+  border-radius: var(--radius-sm);
+  font-size: 0.625rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  box-shadow: 0 2px 4px rgb(139 92 246 / 0.3);
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 4px rgba(124, 58, 237, 0.3);
+  z-index: 1;
 }
 
 .hot-badge {
@@ -334,49 +323,51 @@ body {
   background: var(--accent);
   color: var(--text-inverse);
   padding: 0.25rem 0.5rem;
-  border-radius: var(--radius);
-  font-size: 0.6875rem;
-  font-weight: 600;
+  border-radius: var(--radius-sm);
+  font-size: 0.625rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  box-shadow: 0 2px 4px rgb(249 115 22 / 0.3);
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 4px rgba(234, 88, 12, 0.3);
+  z-index: 1;
 }
 
 .new-badge {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  background: var(--primary);
+  background: var(--success);
   color: var(--text-inverse);
   padding: 0.25rem 0.5rem;
-  border-radius: var(--radius);
-  font-size: 0.6875rem;
-  font-weight: 600;
+  border-radius: var(--radius-sm);
+  font-size: 0.625rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  box-shadow: 0 2px 4px rgb(13 148 136 / 0.3);
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 4px rgba(13, 148, 136, 0.3);
+  z-index: 1;
 }
 
-/* Availability indicator - glowing ring */
+/* Availability indicator */
 .availability-ring {
-  padding: 3px;
+  padding: 2px;
   border-radius: 9999px;
-  background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
-  box-shadow: 0 0 8px rgb(16 185 129 / 0.4);
+  background: linear-gradient(135deg, var(--success) 0%, var(--success-light) 100%);
+  box-shadow: 0 0 6px rgba(13, 148, 136, 0.4);
 }
 
 .availability-ring-busy {
   background: linear-gradient(135deg, var(--warning) 0%, #FBBF24 100%);
-  box-shadow: 0 0 8px rgb(245 158 11 / 0.4);
+  box-shadow: 0 0 6px rgba(217, 119, 6, 0.4);
 }
 
-/* Price tag styling */
+/* Price display */
 .price-tag {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
-  background: var(--primary-50);
-  color: var(--primary-dark);
+  padding: 0.25rem 0.625rem;
+  background: var(--success-50);
+  color: var(--success);
   border-radius: var(--radius);
   font-weight: 700;
   font-size: 0.9375rem;
@@ -396,12 +387,27 @@ body {
 }
 
 .tech-pill:hover {
-  background: var(--primary-100);
-  color: var(--primary-dark);
+  background: var(--primary-50);
+  color: var(--primary);
 }
 
 /* ============================================
-   Minimal Animations - Keep it simple
+   Links
+   ============================================ */
+
+a.link {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a.link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* ============================================
+   Loading States
    ============================================ */
 
 @keyframes shimmer {
@@ -412,10 +418,6 @@ body {
     background-position: 200% 0;
   }
 }
-
-/* ============================================
-   Skeleton Loading
-   ============================================ */
 
 .skeleton {
   background: linear-gradient(
@@ -447,8 +449,8 @@ body {
    ============================================ */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -458,6 +460,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--border-strong);
   border-radius: var(--radius-full);
+  border: 2px solid var(--surface);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -471,4 +474,65 @@ body {
 ::selection {
   background: var(--primary-100);
   color: var(--primary-dark);
+}
+
+/* ============================================
+   Hero Section Styles
+   ============================================ */
+
+.hero-gradient {
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--background) 50%, var(--accent-50) 100%);
+}
+
+.hero-stats {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--background-pure);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.hero-stats-number {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* ============================================
+   Filter Sidebar Styles
+   ============================================ */
+
+.filter-section {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.filter-section:last-child {
+  border-bottom: none;
+}
+
+.filter-checkbox {
+  accent-color: var(--primary);
+}
+
+/* ============================================
+   Empty State
+   ============================================ */
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: var(--surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+}
+
+.empty-state-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  color: var(--text-muted);
 }

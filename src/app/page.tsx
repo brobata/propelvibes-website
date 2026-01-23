@@ -3,7 +3,7 @@
 export const dynamic = "force-dynamic";
 
 import React, { useState, useMemo } from "react";
-import { Search, ArrowRight, Rocket, Code2, Sparkles } from "lucide-react";
+import { Search, ArrowRight, Rocket, Users, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { PageLayout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
@@ -122,64 +122,82 @@ export default function HomePage() {
 
   return (
     <PageLayout>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary-50 to-background pt-8 pb-10">
+      {/* Hero - What is Propel Vibes */}
+      <section className="hero-gradient py-10 md:py-14 border-b border-border">
         <div className="container-custom">
-          <div className="text-center max-w-2xl mx-auto mb-8">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/80 rounded-full text-sm text-text-secondary mb-4 shadow-sm border border-border">
+              <Sparkles className="w-4 h-4 text-accent" />
+              <span>The marketplace for vibe-coded apps</span>
+            </div>
             <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-3">
-              Where Dreamers Ship
+              Built with AI?<br />
+              <span className="text-primary">Ship with pros.</span>
             </h1>
-            <p className="text-lg text-text-secondary mb-6">
-              Connect your AI-built app with developers who can take it to production
+            <p className="text-lg text-text-secondary mb-6 leading-relaxed">
+              Connect your Claude, Cursor, or ChatGPT creation with verified developers
+              who can take it from prototype to production.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="flex flex-wrap items-center gap-3 mb-8">
               <Button size="lg" asChild>
                 <Link href="/post-launch">
-                  <Rocket className="w-5 h-5" />
-                  Post Your Launch
+                  <Rocket className="w-4 h-4" />
+                  Post Your App
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/developers">
-                  <Code2 className="w-5 h-5" />
+                  <Users className="w-4 h-4" />
                   Find Developers
                 </Link>
               </Button>
             </div>
-          </div>
-
-          {/* Search Bar */}
-          <div className="max-w-xl mx-auto">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
-              <Input
-                type="search"
-                placeholder="Search launches by title, tech stack, or budget..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 h-12 text-base bg-background-pure border-border shadow-sm rounded-xl"
-              />
+            <div className="flex flex-wrap gap-3">
+              <div className="hero-stats">
+                <span className="hero-stats-number">{totalCount}</span>
+                <span className="text-text-secondary">active launches</span>
+              </div>
+              <div className="hero-stats">
+                <span className="hero-stats-number">{topDevelopers.length}+</span>
+                <span className="text-text-secondary">verified developers</span>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Quick Stats */}
-          <div className="flex justify-center gap-8 mt-6 text-sm text-text-secondary">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span><strong className="text-text-primary">{totalCount}</strong> active launches</span>
+      {/* Search & Filter Header */}
+      <section className="py-4 border-b border-border bg-white">
+        <div className="container-custom">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h2 className="text-lg font-semibold text-text-primary">
+                Browse Launches
+              </h2>
+              <p className="text-sm text-text-secondary">
+                Apps looking for their developer match
+              </p>
             </div>
-            <div className="flex items-center gap-2">
-              <Code2 className="w-4 h-4 text-primary" />
-              <span><strong className="text-text-primary">{topDevelopers.length}+</strong> verified developers</span>
+            <div className="flex items-center gap-3">
+              <div className="relative flex-1 md:w-80">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+                <Input
+                  type="search"
+                  placeholder="Search by name, tech, or budget..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-9 h-10 text-sm shadow-sm"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-8">
+      <section className="py-6">
         <div className="container-custom">
-          <div className="flex gap-8">
+          <div className="flex gap-6">
             {/* Sidebar Filters */}
             <FilterSidebar
               sections={filterSections}
@@ -193,13 +211,10 @@ export default function HomePage() {
             {/* Results */}
             <div className="flex-1 min-w-0">
               {/* Section Header */}
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h2 className="text-xl font-bold text-text-primary">Latest Launches</h2>
-                  <p className="text-sm text-text-secondary mt-0.5">
-                    Apps looking for their perfect developer match
-                  </p>
-                </div>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-base font-medium text-text-primary">
+                  {totalCount} results
+                </h2>
                 <SortDropdown
                   options={sortOptions}
                   value={sortBy}
@@ -249,20 +264,17 @@ export default function HomePage() {
 
               {/* Top Developers Section */}
               {!isLoading && sortedLaunches.length > 0 && (
-                <div className="mt-12 pt-8 border-t border-border">
-                  <div className="flex items-center justify-between mb-6">
-                    <div>
-                      <h2 className="text-xl font-bold text-text-primary">Top Developers</h2>
-                      <p className="text-sm text-text-secondary mt-0.5">
-                        Verified pros ready to bring your vision to life
-                      </p>
-                    </div>
+                <div className="mt-8 pt-6 border-t border-border">
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-base font-medium text-text-primary">
+                      Available Developers
+                    </h2>
                     <Link
                       href="/developers"
-                      className="text-sm font-medium text-primary hover:text-primary-dark flex items-center gap-1"
+                      className="text-sm text-primary hover:underline flex items-center gap-1"
                     >
-                      View all developers
-                      <ArrowRight className="w-4 h-4" />
+                      View all
+                      <ArrowRight className="w-3 h-3" />
                     </Link>
                   </div>
 

@@ -18,28 +18,29 @@ Propel Vibes is a marketplace connecting "vibe coders" (non-technical creators w
 
 ## Design System
 
-### Brand Identity: "Where Dreamers Ship"
-Friendly, approachable marketplace that welcomes vibe coders and connects them with developers.
+### Brand Identity: Clean Marketplace
+eBay/Etsy-inspired with a touch of warmth. Content-focused, minimal chrome.
 
-### Color Palette (Teal/Cyan - Fresh & Creative)
-- Primary: `#0D9488` (teal - fresh, tech-forward)
-- Primary Dark: `#0F766E`
-- Primary Light: `#14B8A6`
-- Accent: `#F97316` (coral - warm, action-oriented)
+### Color Palette (Clean Blue)
+- Primary: `#3B82F6` (blue - trust, clean)
+- Primary Dark: `#2563EB`
+- Primary Light: `#60A5FA`
+- Accent: `#F59E0B` (orange - warm, action)
 - Highlight: `#8B5CF6` (purple - for featured items)
-- Background: `#FAFAF9` (warm off-white)
+- Background: `#FFFFFF` (pure white)
+- Surface: `#F9FAFB` (light gray)
 
 ### Design Philosophy
-- **Warm & inviting** - gradients, subtle shadows, friendly rounded corners
-- **Distinctive identity** - teal top bar with value props, branded hero
-- **Clear personality** - "Vibe Coders Welcome", "Verified Developers", "Ship Faster"
-- **Visual hierarchy** - price tags, tech pills, glowing availability rings
+- **Clean & minimal** - white backgrounds, subtle borders, no gradients
+- **Content-focused** - let the listings speak for themselves
+- **eBay/Etsy style** - simple cards, straightforward typography
+- **Subtle radius** - 4px corners, not bubbly
 
 ### Card Style
-- Horizontal cards with gradient image backgrounds
-- Hover: teal border glow + soft shadow
-- Price tags with primary-50 background
-- Tech pills with hover interaction
+- Simple horizontal cards with flat backgrounds
+- Hover: border darkens slightly
+- Clean price display (no background)
+- Simple tech tags with borders
 
 ## Database Schema
 
@@ -95,23 +96,28 @@ npm run build        # Production build
 npx tsx scripts/seed.ts  # Run with env vars to seed DB
 ```
 
-## Recent Changes (Jan 3, 2026)
+## Recent Changes (Jan 23, 2026)
 
-### Session 2 - Approval System
+### Session 3 - Clean Marketplace Redesign
+1. **eBay/Etsy-inspired UI** - Removed SaaS/vibe-coder aesthetic
+2. **Clean color palette** - Blue primary instead of teal, white backgrounds
+3. **Simplified navbar** - Removed value props banner, simpler logo
+4. **Minimal homepage** - Content-focused header, no gradient hero
+5. **Reduced border-radius** - 4px instead of 12px everywhere
+6. **Removed liability** - Replaced "Secure Payments" and "Dispute Resolution" with "Direct Deals" and "Reviews"
+7. **Hidden auth** - Login/signup buttons hidden until auth is ready
+
+### Session 2 - Approval System (Jan 3)
 1. **Post-Launch Form** - 5-step wizard with verification code + photo upload
 2. **Admin Dashboard** - `/admin` with approval queue, approve/reject workflow
 3. **Marketplace Filtering** - Only approved launches visible on marketplace
 4. **User Dashboard** - Shows launch statuses (pending/approved/rejected)
 5. **Resubmit Flow** - Rejected launches can be resubmitted after fixes
-6. **Database Migration** - Added verification and approval columns
 
-### Session 1 - Brand Redesign
-1. **Brand Identity Redesign** - "Where Dreamers Ship" personality
-2. **Teal/Cyan Palette** - Fresh, creative, distinctive (not generic blue)
-3. **Value Props Banner** - Teal top bar with "Vibe Coders Welcome" etc.
-4. **Hero Section** - Big tagline, dual CTAs, quick stats
-5. **Warm Card Styling** - Gradients, shadows, price tags, tech pills
-6. **Fixed re-render loop** - useRef for Supabase client stability
+### Session 1 - Initial Build (Jan 3)
+1. **Core marketplace** - Browse launches and developers
+2. **Filter system** - Services, deal types, tech stack
+3. **Seed data** - Demo launches and developers
 
 ## Conventions
 

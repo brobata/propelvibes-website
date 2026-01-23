@@ -41,18 +41,18 @@ async function seed() {
   console.log('Creating developer profiles...');
 
   const developers = [
-    { id: 'dev11111-1111-1111-1111-111111111111', email: 'alex@devstudio.com', name: 'Alex Kim', avatar_url: 'https://randomuser.me/api/portraits/men/22.jpg', role: 'developer', bio: 'Full-stack developer specializing in React and Node.js. Love helping vibe coders ship their products.', location: 'Seattle, WA', website_url: 'https://alexkim.dev', github_url: 'https://github.com/alexkim', linkedin_url: 'https://linkedin.com/in/alexkim', twitter_url: 'https://twitter.com/alexkimdev' },
-    { id: 'dev22222-2222-2222-2222-222222222222', email: 'jordan@example.com', name: 'Jordan Taylor', avatar_url: 'https://randomuser.me/api/portraits/men/45.jpg', role: 'developer', bio: 'DevOps engineer and cloud architect. I make apps scale.', location: 'Denver, CO', website_url: 'https://jordantaylor.io', github_url: 'https://github.com/jtaylor', linkedin_url: 'https://linkedin.com/in/jordantaylor' },
-    { id: 'dev33333-3333-3333-3333-333333333333', email: 'nina@example.com', name: 'Nina Kowalski', avatar_url: 'https://randomuser.me/api/portraits/women/33.jpg', role: 'developer', bio: 'Frontend specialist with a passion for beautiful UX. Tailwind enthusiast.', location: 'Portland, OR', website_url: 'https://ninakowalski.design', github_url: 'https://github.com/ninak', twitter_url: 'https://twitter.com/nina_codes' },
-    { id: 'dev44444-4444-4444-4444-444444444444', email: 'omar@example.com', name: 'Omar Hassan', avatar_url: 'https://randomuser.me/api/portraits/men/52.jpg', role: 'developer', bio: 'Backend wizard. Python, Go, and everything databases.', location: 'Chicago, IL', website_url: 'https://omarhassan.dev', github_url: 'https://github.com/omarh', linkedin_url: 'https://linkedin.com/in/omarhassan' },
-    { id: 'dev55555-5555-5555-5555-555555555555', email: 'lisa@example.com', name: 'Lisa Chen', avatar_url: 'https://randomuser.me/api/portraits/women/21.jpg', role: 'developer', bio: 'Mobile and web developer. Shipped 20+ apps to production.', location: 'Los Angeles, CA', website_url: 'https://lisachen.dev', github_url: 'https://github.com/lisac', linkedin_url: 'https://linkedin.com/in/lisachen', twitter_url: 'https://twitter.com/lisachendev' },
-    { id: 'dev66666-6666-6666-6666-666666666666', email: 'david@example.com', name: 'David Park', avatar_url: 'https://randomuser.me/api/portraits/men/67.jpg', role: 'developer', bio: 'AI/ML engineer helping integrate smarter features into apps.', location: 'San Jose, CA', website_url: 'https://davidpark.ai', github_url: 'https://github.com/dpark', linkedin_url: 'https://linkedin.com/in/davidpark' },
-    { id: 'dev77777-7777-7777-7777-777777777777', email: 'emma@example.com', name: 'Emma Wilson', avatar_url: 'https://randomuser.me/api/portraits/women/48.jpg', role: 'developer', bio: 'Security-focused developer. I make sure your app is bulletproof before launch.', location: 'Boston, MA', website_url: 'https://emmawilson.security', github_url: 'https://github.com/emmaw', linkedin_url: 'https://linkedin.com/in/emmawilson' },
-    { id: 'dev88888-8888-8888-8888-888888888888', email: 'marcus.dev@example.com', name: 'Marcus Rivera', avatar_url: 'https://randomuser.me/api/portraits/men/36.jpg', role: 'developer', bio: 'Full-stack fintech specialist. Stripe, Plaid, payment systems are my jam.', location: 'New York, NY', website_url: 'https://marcusrivera.dev', github_url: 'https://github.com/mrivera', linkedin_url: 'https://linkedin.com/in/marcusrivera' },
-    { id: 'dev99999-9999-9999-9999-999999999999', email: 'sophia@example.com', name: 'Sophia Nguyen', avatar_url: 'https://randomuser.me/api/portraits/women/57.jpg', role: 'developer', bio: 'React Native expert. Your cross-platform mobile app specialist.', location: 'San Francisco, CA', website_url: 'https://sophianguyen.dev', github_url: 'https://github.com/sophian', twitter_url: 'https://twitter.com/sophia_mobile' },
-    { id: 'devaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', email: 'ryan@example.com', name: 'Ryan O\'Brien', avatar_url: 'https://randomuser.me/api/portraits/men/71.jpg', role: 'developer', bio: 'Database and performance optimization expert. PostgreSQL whisperer.', location: 'Austin, TX', website_url: 'https://ryanobrien.dev', github_url: 'https://github.com/ryanob', linkedin_url: 'https://linkedin.com/in/ryanobrien' },
-    { id: 'devbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', email: 'jessica@example.com', name: 'Jessica Martinez', avatar_url: 'https://randomuser.me/api/portraits/women/29.jpg', role: 'developer', bio: 'E-commerce specialist. Shopify, Stripe, inventory systems. Let\'s sell stuff!', location: 'Miami, FL', website_url: 'https://jessicam.dev', github_url: 'https://github.com/jessm', twitter_url: 'https://twitter.com/jess_ecomm' },
-    { id: 'devccccc-cccc-cccc-cccc-cccccccccccc', email: 'chris@example.com', name: 'Chris Anderson', avatar_url: 'https://randomuser.me/api/portraits/men/58.jpg', role: 'developer', bio: 'API integration specialist. If it has an API, I can connect it.', location: 'Atlanta, GA', website_url: 'https://chrisanderson.dev', github_url: 'https://github.com/chrisa', linkedin_url: 'https://linkedin.com/in/chrisanderson' },
+    { id: 'd1111111-1111-1111-1111-111111111111', email: 'alex@devstudio.com', name: 'Alex Kim', avatar_url: 'https://randomuser.me/api/portraits/men/22.jpg', role: 'developer', bio: 'Full-stack developer specializing in React and Node.js. Love helping vibe coders ship their products.', location: 'Seattle, WA', website_url: 'https://alexkim.dev', github_url: 'https://github.com/alexkim', linkedin_url: 'https://linkedin.com/in/alexkim', twitter_url: 'https://twitter.com/alexkimdev' },
+    { id: 'd2222222-2222-2222-2222-222222222222', email: 'jordan@example.com', name: 'Jordan Taylor', avatar_url: 'https://randomuser.me/api/portraits/men/45.jpg', role: 'developer', bio: 'DevOps engineer and cloud architect. I make apps scale.', location: 'Denver, CO', website_url: 'https://jordantaylor.io', github_url: 'https://github.com/jtaylor', linkedin_url: 'https://linkedin.com/in/jordantaylor' },
+    { id: 'd3333333-3333-3333-3333-333333333333', email: 'nina@example.com', name: 'Nina Kowalski', avatar_url: 'https://randomuser.me/api/portraits/women/33.jpg', role: 'developer', bio: 'Frontend specialist with a passion for beautiful UX. Tailwind enthusiast.', location: 'Portland, OR', website_url: 'https://ninakowalski.design', github_url: 'https://github.com/ninak', twitter_url: 'https://twitter.com/nina_codes' },
+    { id: 'd4444444-4444-4444-4444-444444444444', email: 'omar@example.com', name: 'Omar Hassan', avatar_url: 'https://randomuser.me/api/portraits/men/52.jpg', role: 'developer', bio: 'Backend wizard. Python, Go, and everything databases.', location: 'Chicago, IL', website_url: 'https://omarhassan.dev', github_url: 'https://github.com/omarh', linkedin_url: 'https://linkedin.com/in/omarhassan' },
+    { id: 'd5555555-5555-5555-5555-555555555555', email: 'lisa@example.com', name: 'Lisa Chen', avatar_url: 'https://randomuser.me/api/portraits/women/21.jpg', role: 'developer', bio: 'Mobile and web developer. Shipped 20+ apps to production.', location: 'Los Angeles, CA', website_url: 'https://lisachen.dev', github_url: 'https://github.com/lisac', linkedin_url: 'https://linkedin.com/in/lisachen', twitter_url: 'https://twitter.com/lisachendev' },
+    { id: 'd6666666-6666-6666-6666-666666666666', email: 'david@example.com', name: 'David Park', avatar_url: 'https://randomuser.me/api/portraits/men/67.jpg', role: 'developer', bio: 'AI/ML engineer helping integrate smarter features into apps.', location: 'San Jose, CA', website_url: 'https://davidpark.ai', github_url: 'https://github.com/dpark', linkedin_url: 'https://linkedin.com/in/davidpark' },
+    { id: 'd7777777-7777-7777-7777-777777777777', email: 'emma@example.com', name: 'Emma Wilson', avatar_url: 'https://randomuser.me/api/portraits/women/48.jpg', role: 'developer', bio: 'Security-focused developer. I make sure your app is bulletproof before launch.', location: 'Boston, MA', website_url: 'https://emmawilson.security', github_url: 'https://github.com/emmaw', linkedin_url: 'https://linkedin.com/in/emmawilson' },
+    { id: 'd8888888-8888-8888-8888-888888888888', email: 'marcus.dev@example.com', name: 'Marcus Rivera', avatar_url: 'https://randomuser.me/api/portraits/men/36.jpg', role: 'developer', bio: 'Full-stack fintech specialist. Stripe, Plaid, payment systems are my jam.', location: 'New York, NY', website_url: 'https://marcusrivera.dev', github_url: 'https://github.com/mrivera', linkedin_url: 'https://linkedin.com/in/marcusrivera' },
+    { id: 'd9999999-9999-9999-9999-999999999999', email: 'sophia@example.com', name: 'Sophia Nguyen', avatar_url: 'https://randomuser.me/api/portraits/women/57.jpg', role: 'developer', bio: 'React Native expert. Your cross-platform mobile app specialist.', location: 'San Francisco, CA', website_url: 'https://sophianguyen.dev', github_url: 'https://github.com/sophian', twitter_url: 'https://twitter.com/sophia_mobile' },
+    { id: 'daaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', email: 'ryan@example.com', name: 'Ryan O\'Brien', avatar_url: 'https://randomuser.me/api/portraits/men/71.jpg', role: 'developer', bio: 'Database and performance optimization expert. PostgreSQL whisperer.', location: 'Austin, TX', website_url: 'https://ryanobrien.dev', github_url: 'https://github.com/ryanob', linkedin_url: 'https://linkedin.com/in/ryanobrien' },
+    { id: 'dbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', email: 'jessica@example.com', name: 'Jessica Martinez', avatar_url: 'https://randomuser.me/api/portraits/women/29.jpg', role: 'developer', bio: 'E-commerce specialist. Shopify, Stripe, inventory systems. Let\'s sell stuff!', location: 'Miami, FL', website_url: 'https://jessicam.dev', github_url: 'https://github.com/jessm', twitter_url: 'https://twitter.com/jess_ecomm' },
+    { id: 'dccccccc-cccc-cccc-cccc-cccccccccccc', email: 'chris@example.com', name: 'Chris Anderson', avatar_url: 'https://randomuser.me/api/portraits/men/58.jpg', role: 'developer', bio: 'API integration specialist. If it has an API, I can connect it.', location: 'Atlanta, GA', website_url: 'https://chrisanderson.dev', github_url: 'https://github.com/chrisa', linkedin_url: 'https://linkedin.com/in/chrisanderson' },
   ];
 
   const { error: devError } = await supabase.from('pv_profiles').upsert(developers);
@@ -68,18 +68,18 @@ async function seed() {
   console.log('Creating developer extended profiles...');
 
   const devProfiles = [
-    { id: 'dp111111-1111-1111-1111-111111111111', profile_id: 'dev11111-1111-1111-1111-111111111111', headline: 'Full-Stack Developer | React & Node.js Expert', skills: ['React', 'Next.js', 'Node.js', 'TypeScript', 'PostgreSQL', 'Tailwind CSS', 'Supabase'], hourly_rate: 12500, availability: 'available', portfolio_urls: ['https://github.com/alexkim/project1', 'https://alexkim.dev/portfolio'], years_experience: 8, launches_completed: 15, rating: 4.95, reviews_count: 23, verified: true, featured: true },
-    { id: 'dp222222-2222-2222-2222-222222222222', profile_id: 'dev22222-2222-2222-2222-222222222222', headline: 'DevOps & Cloud Architecture Specialist', skills: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'PostgreSQL', 'Redis'], hourly_rate: 15000, availability: 'available', portfolio_urls: ['https://jordantaylor.io/case-studies'], years_experience: 10, launches_completed: 12, rating: 4.88, reviews_count: 18, verified: true },
-    { id: 'dp333333-3333-3333-3333-333333333333', profile_id: 'dev33333-3333-3333-3333-333333333333', headline: 'Frontend Developer & UI/UX Specialist', skills: ['React', 'Vue.js', 'Tailwind CSS', 'Framer Motion', 'Figma', 'TypeScript'], hourly_rate: 10000, availability: 'available', portfolio_urls: ['https://ninakowalski.design/work'], years_experience: 6, launches_completed: 22, rating: 4.92, reviews_count: 31, verified: true, featured: true },
-    { id: 'dp444444-4444-4444-4444-444444444444', profile_id: 'dev44444-4444-4444-4444-444444444444', headline: 'Backend Engineer | Python & Go', skills: ['Python', 'Go', 'FastAPI', 'PostgreSQL', 'MongoDB', 'Redis', 'GraphQL'], hourly_rate: 14000, availability: 'busy', portfolio_urls: ['https://omarhassan.dev/projects'], years_experience: 9, launches_completed: 8, rating: 4.78, reviews_count: 12, verified: true },
-    { id: 'dp555555-5555-5555-5555-555555555555', profile_id: 'dev55555-5555-5555-5555-555555555555', headline: 'Full-Stack Mobile & Web Developer', skills: ['React Native', 'Flutter', 'React', 'Node.js', 'Firebase', 'Supabase'], hourly_rate: 11000, availability: 'available', portfolio_urls: ['https://lisachen.dev/apps'], years_experience: 7, launches_completed: 20, rating: 4.90, reviews_count: 28, verified: true },
-    { id: 'dp666666-6666-6666-6666-666666666666', profile_id: 'dev66666-6666-6666-6666-666666666666', headline: 'AI/ML Engineer | Smart App Features', skills: ['Python', 'TensorFlow', 'OpenAI API', 'LangChain', 'FastAPI', 'React'], hourly_rate: 16000, availability: 'available', portfolio_urls: ['https://davidpark.ai/projects'], years_experience: 5, launches_completed: 6, rating: 4.85, reviews_count: 9, verified: true },
-    { id: 'dp777777-7777-7777-7777-777777777777', profile_id: 'dev77777-7777-7777-7777-777777777777', headline: 'Security & Compliance Expert', skills: ['Security Audits', 'HIPAA', 'SOC2', 'Penetration Testing', 'Node.js', 'Python'], hourly_rate: 18000, availability: 'available', portfolio_urls: ['https://emmawilson.security/portfolio'], years_experience: 11, launches_completed: 14, rating: 4.97, reviews_count: 19, verified: true, featured: true },
-    { id: 'dp888888-8888-8888-8888-888888888888', profile_id: 'dev88888-8888-8888-8888-888888888888', headline: 'Fintech & Payment Systems Specialist', skills: ['Stripe', 'Plaid', 'React', 'Node.js', 'PostgreSQL', 'Compliance'], hourly_rate: 17500, availability: 'available', portfolio_urls: ['https://marcusrivera.dev/fintech'], years_experience: 9, launches_completed: 11, rating: 4.91, reviews_count: 16, verified: true },
-    { id: 'dp999999-9999-9999-9999-999999999999', profile_id: 'dev99999-9999-9999-9999-999999999999', headline: 'React Native & Mobile Expert', skills: ['React Native', 'Expo', 'TypeScript', 'iOS', 'Android', 'Firebase'], hourly_rate: 13000, availability: 'available', portfolio_urls: ['https://sophianguyen.dev/mobile'], years_experience: 6, launches_completed: 18, rating: 4.89, reviews_count: 25, verified: true },
-    { id: 'dpaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', profile_id: 'devaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', headline: 'Database & Performance Optimization', skills: ['PostgreSQL', 'MySQL', 'Redis', 'Query Optimization', 'Data Modeling', 'Supabase'], hourly_rate: 14500, availability: 'busy', portfolio_urls: ['https://ryanobrien.dev/databases'], years_experience: 12, launches_completed: 9, rating: 4.93, reviews_count: 14, verified: true },
-    { id: 'dpbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', profile_id: 'devbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', headline: 'E-commerce & Payments Expert', skills: ['Shopify', 'Stripe', 'WooCommerce', 'React', 'Node.js', 'Inventory Systems'], hourly_rate: 12000, availability: 'available', portfolio_urls: ['https://jessicam.dev/ecommerce'], years_experience: 7, launches_completed: 16, rating: 4.87, reviews_count: 22, verified: true },
-    { id: 'dpcccccc-cccc-cccc-cccc-cccccccccccc', profile_id: 'devccccc-cccc-cccc-cccc-cccccccccccc', headline: 'API Integration Specialist', skills: ['REST APIs', 'GraphQL', 'Webhooks', 'OAuth', 'Node.js', 'Python'], hourly_rate: 11500, availability: 'available', portfolio_urls: ['https://chrisanderson.dev/integrations'], years_experience: 8, launches_completed: 24, rating: 4.82, reviews_count: 35, verified: true },
+    { id: 'e1111111-1111-1111-1111-111111111111', profile_id: 'd1111111-1111-1111-1111-111111111111', headline: 'Full-Stack Developer | React & Node.js Expert', skills: ['React', 'Next.js', 'Node.js', 'TypeScript', 'PostgreSQL', 'Tailwind CSS', 'Supabase'], hourly_rate: 12500, availability: 'available', portfolio_urls: ['https://github.com/alexkim/project1', 'https://alexkim.dev/portfolio'], years_experience: 8, launches_completed: 15, rating: 4.95, reviews_count: 23, verified: true, featured: true },
+    { id: 'e2222222-2222-2222-2222-222222222222', profile_id: 'd2222222-2222-2222-2222-222222222222', headline: 'DevOps & Cloud Architecture Specialist', skills: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'PostgreSQL', 'Redis'], hourly_rate: 15000, availability: 'available', portfolio_urls: ['https://jordantaylor.io/case-studies'], years_experience: 10, launches_completed: 12, rating: 4.88, reviews_count: 18, verified: true },
+    { id: 'e3333333-3333-3333-3333-333333333333', profile_id: 'd3333333-3333-3333-3333-333333333333', headline: 'Frontend Developer & UI/UX Specialist', skills: ['React', 'Vue.js', 'Tailwind CSS', 'Framer Motion', 'Figma', 'TypeScript'], hourly_rate: 10000, availability: 'available', portfolio_urls: ['https://ninakowalski.design/work'], years_experience: 6, launches_completed: 22, rating: 4.92, reviews_count: 31, verified: true, featured: true },
+    { id: 'e4444444-4444-4444-4444-444444444444', profile_id: 'd4444444-4444-4444-4444-444444444444', headline: 'Backend Engineer | Python & Go', skills: ['Python', 'Go', 'FastAPI', 'PostgreSQL', 'MongoDB', 'Redis', 'GraphQL'], hourly_rate: 14000, availability: 'busy', portfolio_urls: ['https://omarhassan.dev/projects'], years_experience: 9, launches_completed: 8, rating: 4.78, reviews_count: 12, verified: true },
+    { id: 'e5555555-5555-5555-5555-555555555555', profile_id: 'd5555555-5555-5555-5555-555555555555', headline: 'Full-Stack Mobile & Web Developer', skills: ['React Native', 'Flutter', 'React', 'Node.js', 'Firebase', 'Supabase'], hourly_rate: 11000, availability: 'available', portfolio_urls: ['https://lisachen.dev/apps'], years_experience: 7, launches_completed: 20, rating: 4.90, reviews_count: 28, verified: true },
+    { id: 'e6666666-6666-6666-6666-666666666666', profile_id: 'd6666666-6666-6666-6666-666666666666', headline: 'AI/ML Engineer | Smart App Features', skills: ['Python', 'TensorFlow', 'OpenAI API', 'LangChain', 'FastAPI', 'React'], hourly_rate: 16000, availability: 'available', portfolio_urls: ['https://davidpark.ai/projects'], years_experience: 5, launches_completed: 6, rating: 4.85, reviews_count: 9, verified: true },
+    { id: 'e7777777-7777-7777-7777-777777777777', profile_id: 'd7777777-7777-7777-7777-777777777777', headline: 'Security & Compliance Expert', skills: ['Security Audits', 'HIPAA', 'SOC2', 'Penetration Testing', 'Node.js', 'Python'], hourly_rate: 18000, availability: 'available', portfolio_urls: ['https://emmawilson.security/portfolio'], years_experience: 11, launches_completed: 14, rating: 4.97, reviews_count: 19, verified: true, featured: true },
+    { id: 'e8888888-8888-8888-8888-888888888888', profile_id: 'd8888888-8888-8888-8888-888888888888', headline: 'Fintech & Payment Systems Specialist', skills: ['Stripe', 'Plaid', 'React', 'Node.js', 'PostgreSQL', 'Compliance'], hourly_rate: 17500, availability: 'available', portfolio_urls: ['https://marcusrivera.dev/fintech'], years_experience: 9, launches_completed: 11, rating: 4.91, reviews_count: 16, verified: true },
+    { id: 'e9999999-9999-9999-9999-999999999999', profile_id: 'd9999999-9999-9999-9999-999999999999', headline: 'React Native & Mobile Expert', skills: ['React Native', 'Expo', 'TypeScript', 'iOS', 'Android', 'Firebase'], hourly_rate: 13000, availability: 'available', portfolio_urls: ['https://sophianguyen.dev/mobile'], years_experience: 6, launches_completed: 18, rating: 4.89, reviews_count: 25, verified: true },
+    { id: 'eaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', profile_id: 'daaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', headline: 'Database & Performance Optimization', skills: ['PostgreSQL', 'MySQL', 'Redis', 'Query Optimization', 'Data Modeling', 'Supabase'], hourly_rate: 14500, availability: 'busy', portfolio_urls: ['https://ryanobrien.dev/databases'], years_experience: 12, launches_completed: 9, rating: 4.93, reviews_count: 14, verified: true },
+    { id: 'ebbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', profile_id: 'dbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', headline: 'E-commerce & Payments Expert', skills: ['Shopify', 'Stripe', 'WooCommerce', 'React', 'Node.js', 'Inventory Systems'], hourly_rate: 12000, availability: 'available', portfolio_urls: ['https://jessicam.dev/ecommerce'], years_experience: 7, launches_completed: 16, rating: 4.87, reviews_count: 22, verified: true },
+    { id: 'eccccccc-cccc-cccc-cccc-cccccccccccc', profile_id: 'dccccccc-cccc-cccc-cccc-cccccccccccc', headline: 'API Integration Specialist', skills: ['REST APIs', 'GraphQL', 'Webhooks', 'OAuth', 'Node.js', 'Python'], hourly_rate: 11500, availability: 'available', portfolio_urls: ['https://chrisanderson.dev/integrations'], years_experience: 8, launches_completed: 24, rating: 4.82, reviews_count: 35, verified: true },
   ];
 
   const { error: devProfileError } = await supabase.from('pv_developer_profiles').upsert(devProfiles);
@@ -96,7 +96,7 @@ async function seed() {
 
   const launches = [
     {
-      id: 'launch001-0001-0001-0001-000000000001',
+      id: 'f0010001-0001-0001-0001-000000000001',
       owner_id: '11111111-1111-1111-1111-111111111111',
       title: 'RecipeAI - Smart Meal Planning App',
       slug: 'recipeai-smart-meal-planning',
@@ -134,7 +134,7 @@ I want this to be the go-to app for busy professionals who want to eat healthy w
       featured: true,
     },
     {
-      id: 'launch002-0002-0002-0002-000000000002',
+      id: 'f0020002-0002-0002-0002-000000000002',
       owner_id: '22222222-2222-2222-2222-222222222222',
       title: 'InvoiceFlow - Freelancer Invoicing Tool',
       slug: 'invoiceflow-freelancer-invoicing',
@@ -173,7 +173,7 @@ Looking for a developer who can take this from MVP to a polished product. Open t
       featured: true,
     },
     {
-      id: 'launch003-0003-0003-0003-000000000003',
+      id: 'f0030003-0003-0003-0003-000000000003',
       owner_id: '33333333-3333-3333-3333-333333333333',
       title: 'StudyBuddy - AI Tutoring Platform',
       slug: 'studybuddy-ai-tutoring',
@@ -208,7 +208,7 @@ This could really help kids who can't afford private tutors!`,
       proposals_count: 0,
     },
     {
-      id: 'launch004-0004-0004-0004-000000000004',
+      id: 'f0040004-0004-0004-0004-000000000004',
       owner_id: '44444444-4444-4444-4444-444444444444',
       title: 'PortfolioTracker - Investment Dashboard',
       slug: 'portfoliotracker-investment-dashboard',
@@ -244,7 +244,7 @@ Looking for a developer who understands fintech and can help make this rock soli
       proposals_count: 0,
     },
     {
-      id: 'launch005-0005-0005-0005-000000000005',
+      id: 'f0050005-0005-0005-0005-000000000005',
       owner_id: '55555555-5555-5555-5555-555555555555',
       title: 'HealthLog - Patient Symptom Tracker',
       slug: 'healthlog-patient-symptom-tracker',
@@ -280,7 +280,7 @@ This needs to be bulletproof before launching - healthcare data is sensitive!`,
       proposals_count: 0,
     },
     {
-      id: 'launch006-0006-0006-0006-000000000006',
+      id: 'f0060006-0006-0006-0006-000000000006',
       owner_id: '66666666-6666-6666-6666-666666666666',
       title: 'FitTrack Pro - AI Workout Companion',
       slug: 'fittrack-pro-workout-companion',
@@ -319,7 +319,7 @@ I have 500 clients waiting for this to be production-ready!`,
       featured: true,
     },
     {
-      id: 'launch007-0007-0007-0007-000000000007',
+      id: 'f0070007-0007-0007-0007-000000000007',
       owner_id: '77777777-7777-7777-7777-777777777777',
       title: 'QuickServe POS - Restaurant Point of Sale',
       slug: 'quickserve-pos-restaurant',
@@ -357,7 +357,7 @@ Other restaurant owners are asking to use this!`,
       proposals_count: 0,
     },
     {
-      id: 'launch008-0008-0008-0008-000000000008',
+      id: 'f0080008-0008-0008-0008-000000000008',
       owner_id: '88888888-8888-8888-8888-888888888888',
       title: 'HomeMatch - Property Comparison Tool',
       slug: 'homematch-property-comparison',
@@ -394,7 +394,7 @@ My clients love it but it needs professional polish.`,
       proposals_count: 0,
     },
     {
-      id: 'launch009-0009-0009-0009-000000000009',
+      id: 'f0090009-0009-0009-0009-000000000009',
       owner_id: '99999999-9999-9999-9999-999999999999',
       title: 'VolunteerHub - Non-Profit Management',
       slug: 'volunteerhub-nonprofit-management',
@@ -432,7 +432,7 @@ Other non-profits want to use this. It could help so many people!`,
       proposals_count: 0,
     },
     {
-      id: 'launch010-0010-0010-0010-000000000010',
+      id: 'f0100010-0010-0010-0010-000000000010',
       owner_id: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
       title: 'PodNotes AI - Podcast Show Notes Generator',
       slug: 'podnotes-ai-show-notes',
@@ -471,7 +471,7 @@ This could save every podcaster hours per episode!`,
       proposals_count: 0,
     },
     {
-      id: 'launch011-0011-0011-0011-000000000011',
+      id: 'f0110011-0011-0011-0011-000000000011',
       owner_id: 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
       title: 'JewelDesign AI - Custom Jewelry Creator',
       slug: 'jeweldesign-ai-custom-jewelry',
@@ -508,7 +508,7 @@ Customers love playing with designs but I need help making them buyable!`,
       proposals_count: 0,
     },
     {
-      id: 'launch012-0012-0012-0012-000000000012',
+      id: 'f0120012-0012-0012-0012-000000000012',
       owner_id: 'cccccccc-cccc-cccc-cccc-cccccccccccc',
       title: 'ChordGenius - Music Composition Helper',
       slug: 'chordgenius-music-composition',
@@ -547,7 +547,7 @@ Musicians are already sharing this in forums!`,
       proposals_count: 0,
     },
     {
-      id: 'launch013-0013-0013-0013-000000000013',
+      id: 'f0130013-0013-0013-0013-000000000013',
       owner_id: '11111111-1111-1111-1111-111111111111',
       title: 'EventVibe - AI Event Planning Assistant',
       slug: 'eventvibe-ai-event-planning',
@@ -585,7 +585,7 @@ Started this for my own wedding planning and realized others might find it usefu
       proposals_count: 0,
     },
     {
-      id: 'launch014-0014-0014-0014-000000000014',
+      id: 'f0140014-0014-0014-0014-000000000014',
       owner_id: '22222222-2222-2222-2222-222222222222',
       title: 'ContractBot - Freelance Contract Generator',
       slug: 'contractbot-contract-generator',
@@ -623,7 +623,7 @@ Would love a developer who wants to build the Stripe of legal docs!`,
       proposals_count: 0,
     },
     {
-      id: 'launch015-0015-0015-0015-000000000015',
+      id: 'f0150015-0015-0015-0015-000000000015',
       owner_id: '33333333-3333-3333-3333-333333333333',
       title: 'GradeAssist - Teacher Assignment Grader',
       slug: 'gradeassist-teacher-grading',
@@ -661,7 +661,7 @@ Every teacher I show this to wants it immediately!`,
       featured: true,
     },
     {
-      id: 'launch016-0016-0016-0016-000000000016',
+      id: 'f0160016-0016-0016-0016-000000000016',
       owner_id: '44444444-4444-4444-4444-444444444444',
       title: 'TaxSimple - Personal Tax Optimizer',
       slug: 'taxsimple-personal-tax-optimizer',
@@ -699,7 +699,7 @@ Want to be the TurboTax killer for people who hate TurboTax.`,
       proposals_count: 0,
     },
     {
-      id: 'launch017-0017-0017-0017-000000000017',
+      id: 'f0170017-0017-0017-0017-000000000017',
       owner_id: '55555555-5555-5555-5555-555555555555',
       title: 'MedRemind - Smart Medication Manager',
       slug: 'medremind-medication-manager',
@@ -736,7 +736,7 @@ Seniors and their families need this!`,
       proposals_count: 0,
     },
     {
-      id: 'launch018-0018-0018-0018-000000000018',
+      id: 'f0180018-0018-0018-0018-000000000018',
       owner_id: '66666666-6666-6666-6666-666666666666',
       title: 'GymFlow - Gym Management System',
       slug: 'gymflow-gym-management',
@@ -789,9 +789,9 @@ Other gym owners keep asking for access!`,
 
   const proposals = [
     {
-      id: 'prop0001-0001-0001-0001-000000000001',
-      launch_id: 'launch001-0001-0001-0001-000000000001', // RecipeAI
-      developer_id: 'dp333333-3333-3333-3333-333333333333', // Nina - Frontend specialist
+      id: 'a0010001-0001-0001-0001-000000000001',
+      launch_id: 'f0010001-0001-0001-0001-000000000001', // RecipeAI
+      developer_id: 'e3333333-3333-3333-3333-333333333333', // Nina - Frontend specialist
       cover_letter: `Hi Sarah!
 
 I love what you've built with RecipeAI - it's exactly the kind of app I enjoy working on. As a frontend specialist, I can help transform your UI into something that looks as good as it works.
@@ -816,9 +816,9 @@ Looking forward to discussing this further.`,
       status: 'pending',
     },
     {
-      id: 'prop0002-0002-0002-0002-000000000002',
-      launch_id: 'launch002-0002-0002-0002-000000000002', // InvoiceFlow
-      developer_id: 'dp888888-8888-8888-8888-888888888888', // Marcus Rivera - Fintech specialist
+      id: 'a0020002-0002-0002-0002-000000000002',
+      launch_id: 'f0020002-0002-0002-0002-000000000002', // InvoiceFlow
+      developer_id: 'e8888888-8888-8888-8888-888888888888', // Marcus Rivera - Fintech specialist
       cover_letter: `Hey Marcus,
 
 InvoiceFlow looks promising! I've built payment systems before and know exactly what it takes to make them production-ready.
@@ -846,9 +846,9 @@ Let's chat!`,
       status: 'pending',
     },
     {
-      id: 'prop0003-0003-0003-0003-000000000003',
-      launch_id: 'launch003-0003-0003-0003-000000000003', // StudyBuddy
-      developer_id: 'dp666666-6666-6666-6666-666666666666', // David Park - AI/ML engineer
+      id: 'a0030003-0003-0003-0003-000000000003',
+      launch_id: 'f0030003-0003-0003-0003-000000000003', // StudyBuddy
+      developer_id: 'e6666666-6666-6666-6666-666666666666', // David Park - AI/ML engineer
       cover_letter: `Elena,
 
 As an AI/ML engineer, I'm excited about StudyBuddy's potential. The wrong answer problem is common with AI tutors, but very solvable.
@@ -873,9 +873,9 @@ This could genuinely help students!`,
       status: 'pending',
     },
     {
-      id: 'prop0004-0004-0004-0004-000000000004',
-      launch_id: 'launch005-0005-0005-0005-000000000005', // HealthLog
-      developer_id: 'dp777777-7777-7777-7777-777777777777', // Emma Wilson - Security expert
+      id: 'a0040004-0004-0004-0004-000000000004',
+      launch_id: 'f0050005-0005-0005-0005-000000000005', // HealthLog
+      developer_id: 'e7777777-7777-7777-7777-777777777777', // Emma Wilson - Security expert
       cover_letter: `Priya,
 
 Healthcare apps are my specialty. I've helped 3 health startups achieve HIPAA compliance and understand what it takes.
@@ -902,9 +902,9 @@ Fixed price: $15,000 for full security overhaul and compliance certification pre
       status: 'pending',
     },
     {
-      id: 'prop0005-0005-0005-0005-000000000005',
-      launch_id: 'launch006-0006-0006-0006-000000000006', // FitTrack Pro
-      developer_id: 'dp999999-9999-9999-9999-999999999999', // Sophia Nguyen - Mobile expert
+      id: 'a0050005-0005-0005-0005-000000000005',
+      launch_id: 'f0060006-0006-0006-0006-000000000006', // FitTrack Pro
+      developer_id: 'e9999999-9999-9999-9999-999999999999', // Sophia Nguyen - Mobile expert
       cover_letter: `Tyler!
 
 FitTrack Pro sounds amazing - as a React Native developer who's also a fitness enthusiast, this is a dream project.
@@ -932,9 +932,9 @@ Proposal: $6,000 fixed + 8% equity for ongoing development partnership.`,
       status: 'pending',
     },
     {
-      id: 'prop0006-0006-0006-0006-000000000006',
-      launch_id: 'launch007-0007-0007-0007-000000000007', // QuickServe POS
-      developer_id: 'dp111111-1111-1111-1111-111111111111', // Alex Kim - Full-stack
+      id: 'a0060006-0006-0006-0006-000000000006',
+      launch_id: 'f0070007-0007-0007-0007-000000000007', // QuickServe POS
+      developer_id: 'e1111111-1111-1111-1111-111111111111', // Alex Kim - Full-stack
       cover_letter: `Mei,
 
 Restaurant POS systems are complex beasts - I've built two of them before! QuickServe looks like it has solid bones.
@@ -961,9 +961,9 @@ Interested in the equity option - I'd love to be a long-term partner on this.`,
       status: 'pending',
     },
     {
-      id: 'prop0007-0007-0007-0007-000000000007',
-      launch_id: 'launch010-0010-0010-0010-000000000010', // PodNotes AI
-      developer_id: 'dpcccccc-cccc-cccc-cccc-cccccccccccc', // Chris Anderson - API integration
+      id: 'a0070007-0007-0007-0007-000000000007',
+      launch_id: 'f0100010-0010-0010-0010-000000000010', // PodNotes AI
+      developer_id: 'eccccccc-cccc-cccc-cccc-cccccccccccc', // Chris Anderson - API integration
       cover_letter: `Kevin,
 
 As a podcast listener myself, I've wished for exactly this tool. I specialize in API integrations and can make PodNotes connect to everything.
@@ -986,9 +986,9 @@ $100/hr, estimated 35-40 hours. Let's make every podcaster's life easier!`,
       status: 'pending',
     },
     {
-      id: 'prop0008-0008-0008-0008-000000000008',
-      launch_id: 'launch015-0015-0015-0015-000000000015', // GradeAssist
-      developer_id: 'dp666666-6666-6666-6666-666666666666', // David Park - AI/ML
+      id: 'a0080008-0008-0008-0008-000000000008',
+      launch_id: 'f0150015-0015-0015-0015-000000000015', // GradeAssist
+      developer_id: 'e6666666-6666-6666-6666-666666666666', // David Park - AI/ML
       cover_letter: `Elena,
 
 Another EdTech project from you! GradeAssist is brilliant - teachers desperately need this.
@@ -1011,9 +1011,9 @@ $160/hr, estimated 45-50 hours. Let's help teachers reclaim their evenings!`,
       status: 'pending',
     },
     {
-      id: 'prop0009-0009-0009-0009-000000000009',
-      launch_id: 'launch004-0004-0004-0004-000000000004', // PortfolioTracker
-      developer_id: 'dp888888-8888-8888-8888-888888888888', // Marcus Rivera - Fintech
+      id: 'a0090009-0009-0009-0009-000000000009',
+      launch_id: 'f0040004-0004-0004-0004-000000000004', // PortfolioTracker
+      developer_id: 'e8888888-8888-8888-8888-888888888888', // Marcus Rivera - Fintech
       cover_letter: `James,
 
 Fintech is my bread and butter. I've worked extensively with Plaid and know exactly why integrations break.
@@ -1041,9 +1041,9 @@ Proposal: $8,000 + 7% equity for full fintech expertise and ongoing support.`,
       status: 'pending',
     },
     {
-      id: 'prop0010-0010-0010-0010-000000000010',
-      launch_id: 'launch012-0012-0012-0012-000000000012', // ChordGenius
-      developer_id: 'dp555555-5555-5555-5555-555555555555', // Lisa Chen - Mobile/Web
+      id: 'a0100010-0010-0010-0010-000000000010',
+      launch_id: 'f0120012-0012-0012-0012-000000000012', // ChordGenius
+      developer_id: 'e5555555-5555-5555-5555-555555555555', // Lisa Chen - Mobile/Web
       cover_letter: `Carlos!
 
 As a fellow musician (I play guitar), ChordGenius is SO cool. I've been waiting for something like this.
