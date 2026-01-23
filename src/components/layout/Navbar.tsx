@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
+  { href: "/how-it-works", label: "How It Works", highlight: true },
   { href: "/launches", label: "Browse Launches" },
   { href: "/developers", label: "Find Developers" },
-  { href: "/how-it-works", label: "How It Works" },
 ];
 
 const categoryLinks = [
@@ -98,9 +98,11 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-3 py-1.5 text-sm",
+                  "px-3 py-1.5 text-sm rounded-md transition-colors",
                   pathname === link.href
                     ? "text-primary font-medium"
+                    : link.highlight
+                    ? "text-primary font-medium bg-primary-50 hover:bg-primary-100"
                     : "text-text-secondary hover:text-text-primary"
                 )}
               >
@@ -119,8 +121,8 @@ export function Navbar() {
               Sign in
             </Link>
             */}
-            <Button size="sm" asChild>
-              <Link href="/post-launch">Post a Launch</Link>
+            <Button size="sm" className="cursor-default opacity-75" disabled>
+              Post a Launch
             </Button>
           </div>
 
@@ -182,12 +184,12 @@ export function Navbar() {
 
               {/* Actions */}
               <div className="px-4 py-3 border-t border-border">
-                <Link
-                  href="/post-launch"
-                  className="block text-center py-2 text-sm bg-primary text-white rounded hover:bg-primary-dark"
+                <button
+                  disabled
+                  className="block w-full text-center py-2 text-sm bg-primary/75 text-white rounded cursor-default"
                 >
                   Post a Launch
-                </Link>
+                </button>
               </div>
             </div>
           </div>

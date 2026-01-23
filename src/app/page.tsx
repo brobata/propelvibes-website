@@ -3,7 +3,7 @@
 export const dynamic = "force-dynamic";
 
 import React, { useState, useMemo } from "react";
-import { Search, ArrowRight, Rocket, Users, Sparkles } from "lucide-react";
+import { Search, ArrowRight, Rocket, Users } from "lucide-react";
 import Link from "next/link";
 import { PageLayout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
@@ -126,10 +126,6 @@ export default function HomePage() {
       <section className="hero-gradient py-10 md:py-14 border-b border-border">
         <div className="container-custom">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/80 rounded-full text-sm text-text-secondary mb-4 shadow-sm border border-border">
-              <Sparkles className="w-4 h-4 text-accent" />
-              <span>The marketplace for vibe-coded apps</span>
-            </div>
             <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-3">
               Built with AI?<br />
               <span className="text-primary">Ship with pros.</span>
@@ -138,11 +134,11 @@ export default function HomePage() {
               Connect your Claude, Cursor, or ChatGPT creation with verified developers
               who can take it from prototype to production.
             </p>
-            <div className="flex flex-wrap items-center gap-3 mb-8">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
               <Button size="lg" asChild>
-                <Link href="/post-launch">
+                <Link href="/launches">
                   <Rocket className="w-4 h-4" />
-                  Post Your App
+                  Browse Apps
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
@@ -152,6 +148,12 @@ export default function HomePage() {
                 </Link>
               </Button>
             </div>
+            <p className="text-sm text-text-secondary mb-6">
+              New here?{" "}
+              <Link href="/how-it-works" className="text-primary font-medium hover:underline">
+                See how it works →
+              </Link>
+            </p>
             <div className="flex flex-wrap gap-3">
               <div className="hero-stats">
                 <span className="hero-stats-number">{totalCount}</span>

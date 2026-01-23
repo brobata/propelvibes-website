@@ -132,11 +132,9 @@ export default function HowItWorksPage() {
           </div>
 
           <div className="mt-6">
-            <Button size="sm" asChild>
-              <Link href="/post-launch">
-                Post Your Launch
-                <ArrowRight className="w-3 h-3" />
-              </Link>
+            <Button size="sm" className="cursor-default opacity-75" disabled>
+              Post Your Launch
+              <ArrowRight className="w-3 h-3" />
             </Button>
           </div>
         </div>
@@ -274,8 +272,8 @@ export default function HowItWorksPage() {
               </p>
             </div>
             <div className="flex gap-3">
-              <Button size="lg" className="bg-white text-primary hover:bg-gray-100" asChild>
-                <Link href="/post-launch">Post Your App</Link>
+              <Button size="lg" className="bg-white/75 text-primary cursor-default" disabled>
+                Post Your App
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
                 <Link href="/launches">Browse Launches</Link>
